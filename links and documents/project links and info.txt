@@ -1,0 +1,27 @@
+1. Intel OpenVino
+https://www.intel.com/content/www/us/en/developer/tools/openvino-toolkit/overview.html
+An open source toolkit that makes it easier to write once, deploy anywhere.
+
+2. STM32
+https://wiki.stmicroelectronics.cn/stm32mcu/wiki/AI:Introduction_to_Artificial_Intelligence_with_STM32#What_is_AI_at_the_edge
+Description for AI on the edge.
+
+3. ARM Cortex-M
+https://developer.arm.com/Architectures/M-Profile%20Architecture
+Able to deploy AI using edge computing.
+
+4. ARM Cortex-A
+https://en.wikipedia.org/wiki/ARM_Cortex-A
+Typical ways to deploy AI.
+
+5. STM32 MPU
+https://www.st.com/en/embedded-software/x-linux-ai.html
+Able to run Tensorflow Lite and perform computer vision tasks.
+
+6. STM32 Discovery Kit
+https://www.st.com/en/evaluation-tools/stm32mp157c-dk2.html
+Board that will be used.
+
+7. Heart disease AI developed by previous year students.
+https://link.springer.com/chapter/10.1007/978-981-19-3923-5_58
+Thesis written.

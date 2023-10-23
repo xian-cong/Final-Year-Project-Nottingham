@@ -37,7 +37,7 @@ python3 main.py
 ```
 
 ### Hardware Setup
-<img src="img/Hardware%20connections.png" alt="Hardware Setup" width="30%" height="30%">
+<div style="text-align:center"><img src="img/Hardware%20connections.png" alt="Hardware Setup" width="50%" height="50%"></div>
 
 ## Time Management
 ### Gantt Chart

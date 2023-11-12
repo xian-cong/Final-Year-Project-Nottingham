@@ -8,7 +8,7 @@ WellnessAI+ is an intelligent wearable device equipped with electrocardiogram (*
 - **Emotion Recognition**: The ECG waveform is sent to the edge for further analysis. The edge will then predict the real-time emotion of the user based on the ECG waveform.
 
 ### Tools and Technologies Used
-![Block Diagram](links%20and%20documents/block%20diagram/WellnessAI+%20Block%20Diagram%20Architecture.drawio.png)
+![Block Diagram](links%20and%20documents/block%20diagram/WellnessAI+%20Block%20Diagram%20Architecture_updated.png)
 
 ## System Requirements
 ### Hardware

@@ -1,0 +1,5 @@
+MANIFEST_VERSION = openstlinux-6.1-yocto-mickledore-mp1-v23.06.21
+KERNEL_DT = ./DeviceTree/ecg sensor/kernel
+OPTEE_DT = ./DeviceTree/ecg sensor/optee-os
+UBOOT_DT = ./DeviceTree/ecg sensor/u-boot
+TFA_DT = ./DeviceTree/ecg sensor/tf-a

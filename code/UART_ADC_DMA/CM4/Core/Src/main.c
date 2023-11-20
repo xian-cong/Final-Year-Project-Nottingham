@@ -170,7 +170,7 @@ int main(void)
 	  HAL_ADC_Start(&hadc2);
 	  HAL_ADC_PollForConversion(&hadc2, HAL_MAX_DELAY);
 	  raw = HAL_ADC_GetValue(&hadc2);
-	  HAL_Delay(100);
+	  HAL_Delay(10);
 	  sprintf(msg, "%d\r\n", raw);
 	  HAL_UART_Transmit(&huart4, msg, strlen(msg), HAL_MAX_DELAY);
     /* USER CODE END WHILE */

@@ -313,8 +313,8 @@ int main(void)
 100001b8:	480d      	ldr	r0, [pc, #52]	; (100001f0 <main+0x94>)
 100001ba:	f001 fb8b 	bl	100018d4 <HAL_ADC_GetValue>
 100001be:	6678      	str	r0, [r7, #100]	; 0x64
-	  HAL_Delay(100);
-100001c0:	2064      	movs	r0, #100	; 0x64
+	  HAL_Delay(10);
+100001c0:	200a      	movs	r0, #10
 100001c2:	f000 fe11 	bl	10000de8 <HAL_Delay>
 	  sprintf(msg, "%d\r\n", raw);
 100001c6:	463b      	mov	r3, r7

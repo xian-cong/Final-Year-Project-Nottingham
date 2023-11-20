@@ -43,7 +43,6 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-ADC_HandleTypeDef hadc1;
 ADC_HandleTypeDef hadc2;
 DMA_HandleTypeDef hdma_adc2;
 
@@ -61,7 +60,6 @@ void PeriphCommonClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_IPCC_Init(void);
-static void MX_ADC1_Init(void);
 static void MX_ADC2_Init(void);
 static void MX_UART4_Init(void);
 int MX_OPENAMP_Init(int RPMsgRole, rpmsg_ns_bind_cb ns_bind_cb);
@@ -81,9 +79,11 @@ int MX_OPENAMP_Init(int RPMsgRole, rpmsg_ns_bind_cb ns_bind_cb);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	uint16_t buf[1024]; //array to store dma levels
-	float buf_Value[1024]; //array to store voltage value
-	char arr[100]; //array for dma sprintf
+//	uint16_t buf[1024]; //array to store dma levels
+//	float buf_Value[1024]; //array to store voltage value
+//	char arr[100]; //array for dma sprintf
+	  uint32_t raw = 0;
+	  char msg[100];
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -121,51 +121,58 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_DMA_Init();
-  MX_ADC1_Init();
   MX_ADC2_Init();
   MX_UART4_Init();
   /* USER CODE BEGIN 2 */
-  /////////////////////////////////store in adc in dma////////////////////////////////
-    HAL_ADC_Start_DMA(&hadc2, (uint32_t *)buf, 1024);
-    HAL_Delay(50);
-    ////////////////////////////////////////////////////////////////////////////////////
+//  /////////////////////////////////store in adc in dma////////////////////////////////
+//    HAL_ADC_Start_DMA(&hadc2, (uint32_t *)buf, 1024);
+//    HAL_Delay(50);
+//    ////////////////////////////////////////////////////////////////////////////////////
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  /////////////////////////////////read adc voltage////////////////////////////////
+//	  /////////////////////////////////read adc voltage////////////////////////////////
+//
+//	    		  for (int i = 0; i<1024; i++) {
+//	    			  buf_Value[i] = (float)(buf[i])*3.3/65536; // 16 bit, 3.3V
+//
+//	    	/////////////////////////////////print adc voltage////////////////////////////////
+//
+//	    			  int lo_plus = HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_11);
+//	    			  int lo_min =  HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14);
+//
+//	  				  char *tmpSign = (buf_Value[i] < 0) ? "-" : "";
+//	  				  float tmpVal = (buf_Value[i] < 0) ? -buf_Value[i] : buf_Value[i];
+//
+//	  				  int tmpInt1 = tmpVal;                  // Get the integer (678).
+//	  				  float tmpFrac = tmpVal - tmpInt1;      // Get fraction (0.0123).
+//	  				  int tmpInt2 = trunc(tmpFrac * 10000);  // Turn into integer (123).
+//
+//	    			  if ((lo_plus == 1) || (lo_min ==1 )) {
+//	    				  sprintf(arr, "!\n");
+//	    			  }
+//	    			  else {
+//	    				  // Print as parts, note that you need 0-padding for fractional bit.
+//	    				  sprintf (arr, "adc_read = %s%d.%04d\r\n", tmpSign, tmpInt1, tmpInt2);
+//	    				  }
+//
+//
+//	    			  //	    		  sprintf(arr, "%g\r\n", buf_Value[i]);
+//	    			  HAL_UART_Transmit(&huart4, (uint8_t*)arr, strlen(arr), HAL_MAX_DELAY);
+//	    			  HAL_Delay(1);
+//	    		  }
+//	    	//////////////////////////////////////////////////////////////////////////////////////
 
-	    		  for (int i = 0; i<1024; i++) {
-	    			  buf_Value[i] = (float)(buf[i])*3.3/4096;
 
-	    	/////////////////////////////////print adc voltage////////////////////////////////
-
-	    			  int lo_plus = HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_11);
-	    			  int lo_min =  HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14);
-
-	  				  char *tmpSign = (buf_Value[i] < 0) ? "-" : "";
-	  				  float tmpVal = (buf_Value[i] < 0) ? -buf_Value[i] : buf_Value[i];
-
-	  				  int tmpInt1 = tmpVal;                  // Get the integer (678).
-	  				  float tmpFrac = tmpVal - tmpInt1;      // Get fraction (0.0123).
-	  				  int tmpInt2 = trunc(tmpFrac * 10000);  // Turn into integer (123).
-
-	    			  if ((lo_plus == 1) || (lo_min ==1 )) {
-	    				  sprintf(arr, "!\n");
-	    			  }
-	    			  else {
-	    				  // Print as parts, note that you need 0-padding for fractional bit.
-	    				  sprintf (arr, "adc_read = %s%d.%04d\r\n", tmpSign, tmpInt1, tmpInt2);
-	    				  }
-
-
-	    			  //	    		  sprintf(arr, "%g\r\n", buf_Value[i]);
-	    			  HAL_UART_Transmit(&huart4, (uint8_t*)arr, strlen(arr), HAL_MAX_DELAY);
-	    			  HAL_Delay(1);
-	    		  }
-	    	//////////////////////////////////////////////////////////////////////////////////////
+	  HAL_ADC_Start(&hadc2);
+	  HAL_ADC_PollForConversion(&hadc2, HAL_MAX_DELAY);
+	  raw = HAL_ADC_GetValue(&hadc2);
+	  HAL_Delay(100);
+	  sprintf(msg, "%d\r\n", raw);
+	  HAL_UART_Transmit(&huart4, msg, strlen(msg), HAL_MAX_DELAY);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -277,73 +284,6 @@ void PeriphCommonClock_Config(void)
 }
 
 /**
-  * @brief ADC1 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_ADC1_Init(void)
-{
-
-  /* USER CODE BEGIN ADC1_Init 0 */
-
-  /* USER CODE END ADC1_Init 0 */
-
-  ADC_MultiModeTypeDef multimode = {0};
-  ADC_ChannelConfTypeDef sConfig = {0};
-
-  /* USER CODE BEGIN ADC1_Init 1 */
-
-  /* USER CODE END ADC1_Init 1 */
-
-  /** Common config
-  */
-  hadc1.Instance = ADC1;
-  hadc1.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
-  hadc1.Init.Resolution = ADC_RESOLUTION_16B;
-  hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
-  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-  hadc1.Init.LowPowerAutoWait = DISABLE;
-  hadc1.Init.ContinuousConvMode = ENABLE;
-  hadc1.Init.NbrOfConversion = 1;
-  hadc1.Init.DiscontinuousConvMode = DISABLE;
-  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc1.Init.ConversionDataManagement = ADC_CONVERSIONDATA_DR;
-  hadc1.Init.Overrun = ADC_OVR_DATA_PRESERVED;
-  hadc1.Init.LeftBitShift = ADC_LEFTBITSHIFT_NONE;
-  hadc1.Init.OversamplingMode = DISABLE;
-  if (HAL_ADC_Init(&hadc1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure the ADC multi-mode
-  */
-  multimode.Mode = ADC_MODE_INDEPENDENT;
-  if (HAL_ADCEx_MultiModeConfigChannel(&hadc1, &multimode) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Regular Channel
-  */
-  sConfig.Channel = ADC_CHANNEL_0;
-  sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-  sConfig.SingleDiff = ADC_SINGLE_ENDED;
-  sConfig.OffsetNumber = ADC_OFFSET_NONE;
-  sConfig.Offset = 0;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN ADC1_Init 2 */
-
-  /* USER CODE END ADC1_Init 2 */
-
-}
-
-/**
   * @brief ADC2 Initialization Function
   * @param None
   * @retval None
@@ -369,12 +309,12 @@ static void MX_ADC2_Init(void)
   hadc2.Init.ScanConvMode = ADC_SCAN_DISABLE;
   hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   hadc2.Init.LowPowerAutoWait = DISABLE;
-  hadc2.Init.ContinuousConvMode = ENABLE;
+  hadc2.Init.ContinuousConvMode = DISABLE;
   hadc2.Init.NbrOfConversion = 1;
   hadc2.Init.DiscontinuousConvMode = DISABLE;
   hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-  hadc2.Init.ConversionDataManagement = ADC_CONVERSIONDATA_DMA_CIRCULAR;
+  hadc2.Init.ConversionDataManagement = ADC_CONVERSIONDATA_DR;
   hadc2.Init.Overrun = ADC_OVR_DATA_PRESERVED;
   hadc2.Init.LeftBitShift = ADC_LEFTBITSHIFT_NONE;
   hadc2.Init.OversamplingMode = DISABLE;
@@ -396,7 +336,16 @@ static void MX_ADC2_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN ADC2_Init 2 */
+  __HAL_RCC_VREF_CLK_ENABLE(); // Enable the VREF clock
+    HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE); // Disable the high impedance mode which is the default one read page 1694 of refman
+    HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE1); // To set the volage to 2.5v
+    HAL_SYSCFG_EnableVREFBUF(); // To enable VREFBUF
 
+    if(HAL_ADCEx_Calibration_Start(&hadc2, ADC_CALIB_OFFSET_LINEARITY, ADC_SINGLE_ENDED) != HAL_OK)
+    {
+      /* Calibration Error */
+      Error_Handler();
+    }
   /* USER CODE END ADC2_Init 2 */
 
 }
@@ -487,7 +436,7 @@ static void MX_DMA_Init(void)
 
   /* DMA interrupt init */
   /* DMA2_Stream0_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 1, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);
 
 }
@@ -499,6 +448,7 @@ static void MX_DMA_Init(void)
   */
 static void MX_GPIO_Init(void)
 {
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
 /* USER CODE BEGIN MX_GPIO_Init_1 */
 /* USER CODE END MX_GPIO_Init_1 */
 
@@ -509,6 +459,11 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOG_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOF_CLK_ENABLE();
+
+  /*Configure GPIO pins : PA5 PA4 */
+  GPIO_InitStruct.Pin = GPIO_PIN_5|GPIO_PIN_4;
+  GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

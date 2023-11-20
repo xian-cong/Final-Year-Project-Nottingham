@@ -57,10 +57,6 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define USB_PWR_CC2_Pin GPIO_PIN_5
-#define USB_PWR_CC2_GPIO_Port GPIOA
-#define USB_PWR_CC1_Pin GPIO_PIN_4
-#define USB_PWR_CC1_GPIO_Port GPIOA
 #define STLINK_RX_Pin GPIO_PIN_11
 #define STLINK_RX_GPIO_Port GPIOG
 #define STLINK_TX_Pin GPIO_PIN_2

@@ -1,0 +1,5 @@
+MANIFEST_VERSION = openstlinux-6.1-yocto-mickledore-mp1-v23.06.21
+KERNEL_DT = ./DeviceTree/ECG UART/kernel
+OPTEE_DT = ./DeviceTree/ECG UART/optee-os
+UBOOT_DT = ./DeviceTree/ECG UART/u-boot
+TFA_DT = ./DeviceTree/ECG UART/tf-a

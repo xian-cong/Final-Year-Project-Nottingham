@@ -2,7 +2,6 @@ links and documents/*.tmp
 links and documents/.$WellnessAI+ Block Diagram Architecture.drawio.bkp
 links and documents/~$Gantt Chart.xlsx
 *.zip
-*.docx
 *.bkp
 links and documents/Gantt Chart_2-1.svg
 links and documents/Gantt Chart_2.pdf
@@ -26,3 +25,7 @@ code/Middlewares/
 code/.mxproject
 code/.project
 code/ecg sensor.ioc
+links and documents/project outline and planning report/Similarity check.docx
+links and documents/project outline and planning report/Title Page Template for Project Outline and Planning Report.docx
+links and documents/project outline and planning report/EmotionAndHeartAnalysis.docx
+links and documents/thesis/Title Page Template for BEng FYP Thesis.docx

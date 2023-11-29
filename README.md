@@ -7,6 +7,11 @@ WellnessAI+ is an intelligent wearable device equipped with electrocardiogram (*
 - **Heart Disease Prediction**: The ECG waveform is sent to the cloud for further analysis. The cloud will then predict the possibility of heart disease based on the ECG waveform.
 - **Emotion Recognition**: The ECG waveform is sent to the edge for further analysis. The edge will then predict the real-time emotion of the user based on the ECG waveform.
 
+### Design
+| Front | Back | Inside | Side |
+| :------: | :------: | :------: | :------: |
+|<div style="text-align:center"><img src="3d%20model\pic\Front.png" alt="front" width="100%" height="100%"></div> | <div style="text-align:center"><img src="3d%20model\pic\back.png" alt="front" width="40%" height="100%"></div> | <div style="text-align:center"><img src="3d%20model\pic\Inside+screen.png" alt="front" width="40%" height="30%"></div> | <div style="text-align:center"><img src="3d%20model\pic\Side_1.png" alt="front" width="40%" height="30%"></div> 
+
 ### Tools and Technologies Used
 ![Block Diagram](links%20and%20documents/block%20diagram/WellnessAI+%20Block%20Diagram%20Architecture_updated.png)
 

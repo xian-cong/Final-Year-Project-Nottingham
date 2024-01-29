@@ -30,3 +30,30 @@ links and documents/project outline and planning report/Title Page Template for 
 links and documents/project outline and planning report/EmotionAndHeartAnalysis.docx
 links and documents/thesis/Title Page Template for BEng FYP Thesis.docx
 links and documents/progress review meeting/sdp-priorities-november-2020.pptx
+emotion recognition/emotion_rec_venv
+emotion recognition/
+emotion_recognition_1/
+heart disease prediction/
+.vscode/
+*.pkl
+data_preprocessing/output.csv
+data_preprocessing/S2_respiban.txt
+data_preprocessing/out.txt
+data_preprocessing/output_1.csv
+data_preprocessing/output_2.csv
+data_preprocessing/output_filter_label/output_S2.csv
+data_preprocessing/output_filter_label/output_S3.csv
+data_preprocessing/output_filter_label/output_S4.csv
+data_preprocessing/output_filter_label/output_S5.csv
+data_preprocessing/output_filter_label/output_S6.csv
+data_preprocessing/output_filter_label/output_S7.csv
+data_preprocessing/output_filter_label/output_S8.csv
+data_preprocessing/output_filter_label/output_S9.csv
+data_preprocessing/output_filter_label/output_S10.csv
+data_preprocessing/output_filter_label/output_S11.csv
+data_preprocessing/output_filter_label/output_S13.csv
+data_preprocessing/output_filter_label/output_S14.csv
+data_preprocessing/output_filter_label/output_S15.csv
+data_preprocessing/output_filter_label/output_S16.csv
+data_preprocessing/output_filter_label/output_S10.csv
+data_preprocessing/output_filter_label/output_S17.csv

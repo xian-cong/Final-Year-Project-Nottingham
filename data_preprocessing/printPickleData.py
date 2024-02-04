@@ -99,13 +99,13 @@
 # final_df.to_csv("data_preprocessing\\output.csv", index=False)
 
 ###########################################################################
-# # discard row with different label in a row data
+# # discard row with different label in a row data (WITH FIRST ROW LABEL)
 import pickle
 import pandas as pd
 import numpy as np
 
 # Load data from the pickle file
-with open("data_preprocessing\\S2.pkl", "rb") as file:
+with open("data_preprocessing\\pkl_data\\S17.pkl", "rb") as file:
     obj = pickle.load(file, encoding="latin1")
 
 # Extract 'label' and 'ECG' arrays
@@ -135,4 +135,19 @@ bit16_data = bit16_data[valid_rows_mask]
 final_df = pd.DataFrame(np.hstack((bit16_data, label_data[:, 0].reshape(-1, 1))), columns=[f'data{i+1}' for i in range(7000)] + ['label'])
 
 # Save the final DataFrame to CSV
-final_df.to_csv("data_preprocessing\\output_2.csv", index=False)
+final_df.to_csv("data_preprocessing\\output_filter_label\\output_S17.csv", index=False)
+
+###########################################################################
+# # transpose csv file (for testing in STM Cube IDE)
+# import pandas as pd
+
+# def transpose_csv(input_file, output_file):
+#     df = pd.read_csv(input_file)
+#     df_transposed = df.transpose()
+#     df_transposed.to_csv(output_file, header=False)
+
+# # Example usage
+# input_file_path = 'data_preprocessing\\output_filter_label\\test_output.csv'  # Replace with your input file path
+# output_file_path = 'data_preprocessing\\output_filter_label\\test_output_transposed.csv'  # Replace with your desired output file path
+
+# transpose_csv(input_file_path, output_file_path)

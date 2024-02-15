@@ -1,0 +1,5 @@
+MANIFEST_VERSION = openstlinux-6.1-yocto-mickledore-mp1-v23.06.21
+KERNEL_DT = ./DeviceTree/emotion_ai/kernel
+OPTEE_DT = ./DeviceTree/emotion_ai/optee-os
+UBOOT_DT = ./DeviceTree/emotion_ai/u-boot
+TFA_DT = ./DeviceTree/emotion_ai/tf-a

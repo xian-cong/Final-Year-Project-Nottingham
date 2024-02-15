@@ -1,0 +1,205 @@
+Neural Network Tools for STM32 family v1.7.0 (stm.ai v8.1.0-19520)
+Created date          : 2024-02-08 15:59:54
+Parameters            : generate --name emotion_model -m D:/Nottingham/FYP/Final-Year-Project-Nottingham/model/ecg_emotion_model_2class_500in.tflite --type tflite --compression medium --verbosity 1 --workspace C:\Users\user\AppData\Local\Temp\mxAI_workspace9766297012850017052577086975018439 --output C:\Users\user\.stm32cubemx\emotion_model_output --allocate-inputs --series stm32mp1 --allocate-outputs
+
+Exec/report summary (generate)
+---------------------------------------------------------------------------------------------------------------------
+model file         :   D:\Nottingham\FYP\Final-Year-Project-Nottingham\model\ecg_emotion_model_2class_500in.tflite   
+type               :   tflite                                                                                        
+c_name             :   emotion_model                                                                                 
+compression        :   medium                                                                                        
+options            :   allocate-inputs, allocate-outputs                                                             
+optimization       :   balanced                                                                                      
+target/series      :   stm32mp1                                                                                      
+workspace dir      :   C:\Users\user\AppData\Local\Temp\mxAI_workspace9766297012850017052577086975018439             
+output dir         :   C:\Users\user\.stm32cubemx\emotion_model_output                                               
+model_fmt          :   float                                                                                         
+model_name         :   ecg_emotion_model_2class_500in                                                                
+model_hash         :   43e11755eda72ada071d0aa16a95a0f5                                                              
+params #           :   16,710 items (18.40 KiB)                                                                      
+---------------------------------------------------------------------------------------------------------------------
+input 1/1          :   'serving_default_dense_input0' (domain:activations/**default**)                               
+                   :   500 items, 1.95 KiB, ai_float, float, (1,500)                                                 
+output 1/1         :   'nl_8' (domain:activations/**default**)                                                       
+                   :   2 items, 8 B, ai_float, float, (1,2)                                                          
+macc               :   16,814                                                                                        
+weights (ro)       :   9,176 B (8.96 KiB) (1 segment) / -57,664(-86.3%) vs float model                               
+activations (rw)   :   2,128 B (2.08 KiB) (1 segment) *                                                              
+ram (total)        :   2,128 B (2.08 KiB) = 2,128 + 0 + 0                                                            
+---------------------------------------------------------------------------------------------------------------------
+(*) 'input'/'output' buffers can be used from the activations buffer
+
+Model name - ecg_emotion_model_2class_500in ['serving_default_dense_input0'] ['nl_8']
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+m_id   layer (type,original)                                              oshape              param/size          macc                                       connected to   | c_size             c_macc             c_type             
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+0      serving_default_dense_input0 (Input, )                             [b:1,c:500]                                                                                       | +8,064(+100.0%)    +16,000(+100.0%)   dense_wc4of32[0]   
+       sequential_dense_MatMul1 (Placeholder, )                           [h:32,h:32,c:500]   16,000/16,000                                                                 | -16,000(-100.0%)                      
+       gemm_0 (Gemm, FULLY_CONNECTED)                                     [b:1,c:32]                            16,032                       serving_default_dense_input0   |                    -16,032(-100.0%)   
+                                                                                                                                                 sequential_dense_MatMul1   | 
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+1      sequential_batch_normalization_batchnorm_mul_1 (Placeholder, )     [h:16,h:16,c:32]    512/2,048                                                                     | -1,664(-81.2%)     +528(+100.0%)      dense_wc4of32[1]   
+       sequential_batch_normalization_batchnorm_sub (Placeholder, )       [c:16]              16/64                                                                         | -64(-100.0%)                          
+       gemm_1 (Gemm, FULLY_CONNECTED)                                     [b:1,c:16]                               528                                             gemm_0   |                    -528(-100.0%)      
+                                                                                                                           sequential_batch_normalization_batchnorm_mul_1   | 
+                                                                                                                             sequential_batch_normalization_batchnorm_sub   | 
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+2      nl_2 (Nonlinearity, LEAKY_RELU)                                    [b:1,c:16]                                16                                             gemm_1   |                    +32(+200.0%)       nl_of32[2]         
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+3      sequential_batch_normalization_1_batchnorm_mul_1 (Placeholder, )   [h:8,h:8,c:16]      128/512                                                                       | +32(+6.2%)         +136(+100.0%)      dense_of32[3]      
+       sequential_batch_normalization_1_batchnorm_add_1 (Placeholder, )   [c:8]               8/32                                                                          | -32(-100.0%)                          
+       gemm_3 (Gemm, FULLY_CONNECTED)                                     [b:1,c:8]                                136                                               nl_2   |                    -136(-100.0%)      
+                                                                                                                         sequential_batch_normalization_1_batchnorm_mul_1   | 
+                                                                                                                         sequential_batch_normalization_1_batchnorm_add_1   | 
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+4      nl_4 (Nonlinearity, LEAKY_RELU)                                    [b:1,c:8]                                  8                                             gemm_3   |                    +16(+200.0%)       nl_of32[4]         
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+5      sequential_batch_normalization_2_batchnorm_mul_1 (Placeholder, )   [h:4,h:4,c:8]       32/128                                                                        | +16(+12.5%)        +36(+100.0%)       dense_of32[5]      
+       sequential_batch_normalization_2_batchnorm_add_1 (Placeholder, )   [c:4]               4/16                                                                          | -16(-100.0%)                          
+       gemm_5 (Gemm, FULLY_CONNECTED)                                     [b:1,c:4]                                 36                                               nl_4   |                    -36(-100.0%)       
+                                                                                                                         sequential_batch_normalization_2_batchnorm_mul_1   | 
+                                                                                                                         sequential_batch_normalization_2_batchnorm_add_1   | 
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+6      nl_6 (Nonlinearity, LEAKY_RELU)                                    [b:1,c:4]                                  4                                             gemm_5   |                    +8(+200.0%)        nl_of32[6]         
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+7      sequential_dense_4_MatMul (Placeholder, )                          [h:2,h:2,c:4]       8/32                                                                          | +8(+25.0%)         +10(+100.0%)       dense_of32[7]      
+       sequential_dense_4_BiasAdd_ReadVariableOp (Placeholder, )          [c:2]               2/8                                                                           | -8(-100.0%)                           
+       gemm_7 (Gemm, FULLY_CONNECTED)                                     [b:1,c:2]                                 10                                               nl_6   |                    -10(-100.0%)       
+                                                                                                                                                sequential_dense_4_MatMul   | 
+                                                                                                                                sequential_dense_4_BiasAdd_ReadVariableOp   | 
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+8      nl_8 (Nonlinearity, LOGISTIC)                                      [b:1,c:2]                                 20                                             gemm_7   |                                       nl_of32[o][8]      
+------ ------------------------------------------------------------------ ------------------- --------------- -------- -------------------------------------------------- --- ------------------ ------------------ ------------------ 
+model/c-model: macc=16,790/16,814 +24(+0.1%) weights=18,840/9,176 -9,664(-51.3%) activations=--/2,128 io=--/0
+
+
+
+Generated C-graph summary
+------------------------------------------------------------------------------------------------------------------------
+model name            : ecg_emotion_model_2class_500in
+c-name                : emotion_model
+c-node #              : 9
+c-array #             : 19
+activations size      : 2128 (1 segment)
+weights size          : 9176 (1 segment)
+macc                  : 16814
+inputs                : ['serving_default_dense_input0_output']
+outputs               : ['nl_8_output']
+
+C-Arrays (19)
+------ ------------------------------------- ------------ ------------------------- ------------- ----------- --------- 
+c_id   name (*_array)                        item/size    domain/mem-pool           c-type        fmt         comment   
+------ ------------------------------------- ------------ ------------------------- ------------- ----------- --------- 
+0      gemm_3_bias                           8/32         weights/weights           const float   float32               
+1      gemm_5_weights                        32/128       weights/weights           const float   float32               
+2      gemm_5_bias                           4/16         weights/weights           const float   float32               
+3      gemm_7_weights                        8/32         weights/weights           const float   float32               
+4      gemm_7_bias                           2/8          weights/weights           const float   float32               
+5      serving_default_dense_input0_output   500/2000     activations/**default**   float         float32     /input    
+6      gemm_0_output                         32/128       activations/**default**   float         float32               
+7      gemm_1_output                         16/64        activations/**default**   float         float32               
+8      nl_2_output                           16/64        activations/**default**   float         float32               
+9      gemm_3_output                         8/32         activations/**default**   float         float32               
+10     nl_4_output                           8/32         activations/**default**   float         float32               
+11     gemm_5_output                         4/16         activations/**default**   float         float32               
+12     nl_6_output                           4/16         activations/**default**   float         float32               
+13     gemm_7_output                         2/8          activations/**default**   float         float32               
+14     nl_8_output                           2/8          activations/**default**   float         float32     /output   
+15     gemm_0_weights                        16000/8064   weights/weights           const float   c4 (LUT4)             
+16     gemm_1_weights                        512/320      weights/weights           const float   c4 (LUT4)             
+17     gemm_1_bias                           16/64        weights/weights           const float   float32               
+18     gemm_3_weights                        128/512      weights/weights           const float   float32               
+------ ------------------------------------- ------------ ------------------------- ------------- ----------- --------- 
+
+C-Layers (9)
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+c_id   name (*_layer)   id   layer_type   macc    rom    tensors                                  shape (array id)   
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+0      gemm_0           0    dense        16000   8064   I: serving_default_dense_input0_output   (1,500) (5)        
+                                                         W: gemm_0_weights                        (500,32) (15)      
+                                                         O: gemm_0_output                         (1,32) (6)         
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+1      gemm_1           1    dense        528     384    I: gemm_0_output                         (1,32) (6)         
+                                                         W: gemm_1_weights                        (32,16) (16)       
+                                                         W: gemm_1_bias                           (16,) (17)         
+                                                         O: gemm_1_output                         (1,16) (7)         
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+2      nl_2             2    nl           48      0      I: gemm_1_output                         (1,16) (7)         
+                                                         O: nl_2_output                           (1,16) (8)         
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+3      gemm_3           3    dense        136     544    I: nl_2_output                           (1,16) (8)         
+                                                         W: gemm_3_weights                        (16,8) (18)        
+                                                         W: gemm_3_bias                           (8,) (0)           
+                                                         O: gemm_3_output                         (1,8) (9)          
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+4      nl_4             4    nl           24      0      I: gemm_3_output                         (1,8) (9)          
+                                                         O: nl_4_output                           (1,8) (10)         
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+5      gemm_5           5    dense        36      144    I: nl_4_output                           (1,8) (10)         
+                                                         W: gemm_5_weights                        (8,4) (1)          
+                                                         W: gemm_5_bias                           (4,) (2)           
+                                                         O: gemm_5_output                         (1,4) (11)         
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+6      nl_6             6    nl           12      0      I: gemm_5_output                         (1,4) (11)         
+                                                         O: nl_6_output                           (1,4) (12)         
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+7      gemm_7           7    dense        10      40     I: nl_6_output                           (1,4) (12)         
+                                                         W: gemm_7_weights                        (4,2) (3)          
+                                                         W: gemm_7_bias                           (2,) (4)           
+                                                         O: gemm_7_output                         (1,2) (13)         
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+8      nl_8             8    nl           20      0      I: gemm_7_output                         (1,2) (13)         
+                                                         O: nl_8_output                           (1,2) (14)         
+------ ---------------- ---- ------------ ------- ------ ---------------------------------------- ------------------ 
+
+
+
+Number of operations per c-layer
+------- ------ ---------------- -------- ---------------- -------- ---------- 
+c_id    m_id   name (type)           #op             type   #param   sparsity 
+------- ------ ---------------- -------- ---------------- -------- ---------- 
+0       0      gemm_0 (dense)     16,000   smul_f32_f32c4   16,000     0.0001 
+1       1      gemm_1 (dense)        528   smul_f32_f32c4      528     0.0019 
+2       2      nl_2 (nl)              48       op_f32_f32          
+3       3      gemm_3 (dense)        136     smul_f32_f32      136     0.0000 
+4       4      nl_4 (nl)              24       op_f32_f32          
+5       5      gemm_5 (dense)         36     smul_f32_f32       36     0.0000 
+6       6      nl_6 (nl)              12       op_f32_f32          
+7       7      gemm_7 (dense)         10     smul_f32_f32       10     0.0000 
+8       8      nl_8 (nl)              20       op_f32_f32          
+------- ------ ---------------- -------- ---------------- -------- ---------- 
+total                             16,814                    16,710     0.0002 
+
+Number of operation types
+---------------- -------- ----------- 
+operation type          #           % 
+---------------- -------- ----------- 
+smul_f32_f32c4     16,528       98.3% 
+op_f32_f32            104        0.6% 
+smul_f32_f32          182        1.1% 
+
+Complexity report (model)
+------ -------------------------------------------------- ------------------------- ------------------------- ------ 
+m_id   name                                               c_macc                    c_rom                     c_id   
+------ -------------------------------------------------- ------------------------- ------------------------- ------ 
+0      serving_default_dense_input0                       ||||||||||||||||  95.2%   ||||||||||||||||  87.9%   [0]    
+1      sequential_batch_normalization_batchnorm_mul_1     |                  3.1%   |                  4.2%   [1]    
+2      nl_2                                               |                  0.3%   |                  0.0%   [2]    
+3      sequential_batch_normalization_1_batchnorm_mul_1   |                  0.8%   ||                 5.9%   [3]    
+4      nl_4                                               |                  0.1%   |                  0.0%   [4]    
+5      sequential_batch_normalization_2_batchnorm_mul_1   |                  0.2%   |                  1.6%   [5]    
+6      nl_6                                               |                  0.1%   |                  0.0%   [6]    
+7      sequential_dense_4_MatMul                          |                  0.1%   |                  0.4%   [7]    
+8      nl_8                                               |                  0.1%   |                  0.0%   [8]    
+------ -------------------------------------------------- ------------------------- ------------------------- ------ 
+macc=16,814 weights=9,176 act=2,128 ram_io=0
+
+Generated files (7)
+----------------------------------------------------------------------------- 
+C:\Users\user\.stm32cubemx\emotion_model_output\emotion_model_config.h        
+C:\Users\user\.stm32cubemx\emotion_model_output\emotion_model.h               
+C:\Users\user\.stm32cubemx\emotion_model_output\emotion_model.c               
+C:\Users\user\.stm32cubemx\emotion_model_output\emotion_model_data_params.h   
+C:\Users\user\.stm32cubemx\emotion_model_output\emotion_model_data_params.c   
+C:\Users\user\.stm32cubemx\emotion_model_output\emotion_model_data.h          
+C:\Users\user\.stm32cubemx\emotion_model_output\emotion_model_data.c          

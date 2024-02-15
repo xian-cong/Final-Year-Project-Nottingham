@@ -313,8 +313,8 @@ int main(void)
 100001b8:	480d      	ldr	r0, [pc, #52]	; (100001f0 <main+0x94>)
 100001ba:	f001 fb8b 	bl	100018d4 <HAL_ADC_GetValue>
 100001be:	6678      	str	r0, [r7, #100]	; 0x64
-	  HAL_Delay(10);
-100001c0:	200a      	movs	r0, #10
+	  HAL_Delay(1);
+100001c0:	2001      	movs	r0, #1
 100001c2:	f000 fe11 	bl	10000de8 <HAL_Delay>
 	  sprintf(msg, "%d\r\n", raw);
 100001c6:	463b      	mov	r3, r7
@@ -452,7 +452,7 @@ void SystemClock_Config(void)
 100002ea:	f5a3 738a 	sub.w	r3, r3, #276	; 0x114
 100002ee:	2201      	movs	r2, #1
 100002f0:	679a      	str	r2, [r3, #120]	; 0x78
-  RCC_OscInitStruct.PLL2.PLLFRACV = 0x1400;
+  RCC_OscInitStruct.PLL2.PLLFRACV = 5120;
 100002f2:	f507 73a4 	add.w	r3, r7, #328	; 0x148
 100002f6:	f5a3 738a 	sub.w	r3, r3, #276	; 0x114
 100002fa:	f44f 52a0 	mov.w	r2, #5120	; 0x1400
@@ -741,140 +741,139 @@ static void MX_ADC2_Init(void)
 1000055c:	4b35      	ldr	r3, [pc, #212]	; (10000634 <MX_ADC2_Init+0xf0>)
 1000055e:	4a36      	ldr	r2, [pc, #216]	; (10000638 <MX_ADC2_Init+0xf4>)
 10000560:	601a      	str	r2, [r3, #0]
-  hadc2.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+  hadc2.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV256;
 10000562:	4b34      	ldr	r3, [pc, #208]	; (10000634 <MX_ADC2_Init+0xf0>)
-10000564:	2200      	movs	r2, #0
-10000566:	605a      	str	r2, [r3, #4]
+10000564:	f44f 1230 	mov.w	r2, #2883584	; 0x2c0000
+10000568:	605a      	str	r2, [r3, #4]
   hadc2.Init.Resolution = ADC_RESOLUTION_16B;
-10000568:	4b32      	ldr	r3, [pc, #200]	; (10000634 <MX_ADC2_Init+0xf0>)
-1000056a:	2200      	movs	r2, #0
-1000056c:	609a      	str	r2, [r3, #8]
+1000056a:	4b32      	ldr	r3, [pc, #200]	; (10000634 <MX_ADC2_Init+0xf0>)
+1000056c:	2200      	movs	r2, #0
+1000056e:	609a      	str	r2, [r3, #8]
   hadc2.Init.ScanConvMode = ADC_SCAN_DISABLE;
-1000056e:	4b31      	ldr	r3, [pc, #196]	; (10000634 <MX_ADC2_Init+0xf0>)
-10000570:	2200      	movs	r2, #0
-10000572:	60da      	str	r2, [r3, #12]
+10000570:	4b30      	ldr	r3, [pc, #192]	; (10000634 <MX_ADC2_Init+0xf0>)
+10000572:	2200      	movs	r2, #0
+10000574:	60da      	str	r2, [r3, #12]
   hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
-10000574:	4b2f      	ldr	r3, [pc, #188]	; (10000634 <MX_ADC2_Init+0xf0>)
-10000576:	2204      	movs	r2, #4
-10000578:	611a      	str	r2, [r3, #16]
+10000576:	4b2f      	ldr	r3, [pc, #188]	; (10000634 <MX_ADC2_Init+0xf0>)
+10000578:	2204      	movs	r2, #4
+1000057a:	611a      	str	r2, [r3, #16]
   hadc2.Init.LowPowerAutoWait = DISABLE;
-1000057a:	4b2e      	ldr	r3, [pc, #184]	; (10000634 <MX_ADC2_Init+0xf0>)
-1000057c:	2200      	movs	r2, #0
-1000057e:	751a      	strb	r2, [r3, #20]
+1000057c:	4b2d      	ldr	r3, [pc, #180]	; (10000634 <MX_ADC2_Init+0xf0>)
+1000057e:	2200      	movs	r2, #0
+10000580:	751a      	strb	r2, [r3, #20]
   hadc2.Init.ContinuousConvMode = DISABLE;
-10000580:	4b2c      	ldr	r3, [pc, #176]	; (10000634 <MX_ADC2_Init+0xf0>)
-10000582:	2200      	movs	r2, #0
-10000584:	755a      	strb	r2, [r3, #21]
+10000582:	4b2c      	ldr	r3, [pc, #176]	; (10000634 <MX_ADC2_Init+0xf0>)
+10000584:	2200      	movs	r2, #0
+10000586:	755a      	strb	r2, [r3, #21]
   hadc2.Init.NbrOfConversion = 1;
-10000586:	4b2b      	ldr	r3, [pc, #172]	; (10000634 <MX_ADC2_Init+0xf0>)
-10000588:	2201      	movs	r2, #1
-1000058a:	619a      	str	r2, [r3, #24]
+10000588:	4b2a      	ldr	r3, [pc, #168]	; (10000634 <MX_ADC2_Init+0xf0>)
+1000058a:	2201      	movs	r2, #1
+1000058c:	619a      	str	r2, [r3, #24]
   hadc2.Init.DiscontinuousConvMode = DISABLE;
-1000058c:	4b29      	ldr	r3, [pc, #164]	; (10000634 <MX_ADC2_Init+0xf0>)
-1000058e:	2200      	movs	r2, #0
-10000590:	771a      	strb	r2, [r3, #28]
+1000058e:	4b29      	ldr	r3, [pc, #164]	; (10000634 <MX_ADC2_Init+0xf0>)
+10000590:	2200      	movs	r2, #0
+10000592:	771a      	strb	r2, [r3, #28]
   hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
-10000592:	4b28      	ldr	r3, [pc, #160]	; (10000634 <MX_ADC2_Init+0xf0>)
-10000594:	2200      	movs	r2, #0
-10000596:	625a      	str	r2, [r3, #36]	; 0x24
+10000594:	4b27      	ldr	r3, [pc, #156]	; (10000634 <MX_ADC2_Init+0xf0>)
+10000596:	2200      	movs	r2, #0
+10000598:	625a      	str	r2, [r3, #36]	; 0x24
   hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
-10000598:	4b26      	ldr	r3, [pc, #152]	; (10000634 <MX_ADC2_Init+0xf0>)
-1000059a:	2200      	movs	r2, #0
-1000059c:	629a      	str	r2, [r3, #40]	; 0x28
+1000059a:	4b26      	ldr	r3, [pc, #152]	; (10000634 <MX_ADC2_Init+0xf0>)
+1000059c:	2200      	movs	r2, #0
+1000059e:	629a      	str	r2, [r3, #40]	; 0x28
   hadc2.Init.ConversionDataManagement = ADC_CONVERSIONDATA_DR;
-1000059e:	4b25      	ldr	r3, [pc, #148]	; (10000634 <MX_ADC2_Init+0xf0>)
-100005a0:	2200      	movs	r2, #0
-100005a2:	62da      	str	r2, [r3, #44]	; 0x2c
+100005a0:	4b24      	ldr	r3, [pc, #144]	; (10000634 <MX_ADC2_Init+0xf0>)
+100005a2:	2200      	movs	r2, #0
+100005a4:	62da      	str	r2, [r3, #44]	; 0x2c
   hadc2.Init.Overrun = ADC_OVR_DATA_PRESERVED;
-100005a4:	4b23      	ldr	r3, [pc, #140]	; (10000634 <MX_ADC2_Init+0xf0>)
-100005a6:	2200      	movs	r2, #0
-100005a8:	631a      	str	r2, [r3, #48]	; 0x30
+100005a6:	4b23      	ldr	r3, [pc, #140]	; (10000634 <MX_ADC2_Init+0xf0>)
+100005a8:	2200      	movs	r2, #0
+100005aa:	631a      	str	r2, [r3, #48]	; 0x30
   hadc2.Init.LeftBitShift = ADC_LEFTBITSHIFT_NONE;
-100005aa:	4b22      	ldr	r3, [pc, #136]	; (10000634 <MX_ADC2_Init+0xf0>)
-100005ac:	2200      	movs	r2, #0
-100005ae:	635a      	str	r2, [r3, #52]	; 0x34
+100005ac:	4b21      	ldr	r3, [pc, #132]	; (10000634 <MX_ADC2_Init+0xf0>)
+100005ae:	2200      	movs	r2, #0
+100005b0:	635a      	str	r2, [r3, #52]	; 0x34
   hadc2.Init.OversamplingMode = DISABLE;
-100005b0:	4b20      	ldr	r3, [pc, #128]	; (10000634 <MX_ADC2_Init+0xf0>)
-100005b2:	2200      	movs	r2, #0
-100005b4:	f883 2038 	strb.w	r2, [r3, #56]	; 0x38
+100005b2:	4b20      	ldr	r3, [pc, #128]	; (10000634 <MX_ADC2_Init+0xf0>)
+100005b4:	2200      	movs	r2, #0
+100005b6:	f883 2038 	strb.w	r2, [r3, #56]	; 0x38
   if (HAL_ADC_Init(&hadc2) != HAL_OK)
-100005b8:	481e      	ldr	r0, [pc, #120]	; (10000634 <MX_ADC2_Init+0xf0>)
-100005ba:	f000 fe9f 	bl	100012fc <HAL_ADC_Init>
-100005be:	4603      	mov	r3, r0
-100005c0:	2b00      	cmp	r3, #0
-100005c2:	d001      	beq.n	100005c8 <MX_ADC2_Init+0x84>
+100005ba:	481e      	ldr	r0, [pc, #120]	; (10000634 <MX_ADC2_Init+0xf0>)
+100005bc:	f000 fe9e 	bl	100012fc <HAL_ADC_Init>
+100005c0:	4603      	mov	r3, r0
+100005c2:	2b00      	cmp	r3, #0
+100005c4:	d001      	beq.n	100005ca <MX_ADC2_Init+0x86>
   {
     Error_Handler();
-100005c4:	f000 f8ea 	bl	1000079c <Error_Handler>
+100005c6:	f000 f8e9 	bl	1000079c <Error_Handler>
   }
 
   /** Configure Regular Channel
   */
   sConfig.Channel = ADC_CHANNEL_6;
-100005c8:	4b1c      	ldr	r3, [pc, #112]	; (1000063c <MX_ADC2_Init+0xf8>)
-100005ca:	607b      	str	r3, [r7, #4]
+100005ca:	4b1c      	ldr	r3, [pc, #112]	; (1000063c <MX_ADC2_Init+0xf8>)
+100005cc:	607b      	str	r3, [r7, #4]
   sConfig.Rank = ADC_REGULAR_RANK_1;
-100005cc:	2306      	movs	r3, #6
-100005ce:	60bb      	str	r3, [r7, #8]
+100005ce:	2306      	movs	r3, #6
+100005d0:	60bb      	str	r3, [r7, #8]
   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
-100005d0:	2300      	movs	r3, #0
-100005d2:	60fb      	str	r3, [r7, #12]
+100005d2:	2300      	movs	r3, #0
+100005d4:	60fb      	str	r3, [r7, #12]
   sConfig.SingleDiff = ADC_SINGLE_ENDED;
-100005d4:	f240 73ff 	movw	r3, #2047	; 0x7ff
-100005d8:	613b      	str	r3, [r7, #16]
+100005d6:	f240 73ff 	movw	r3, #2047	; 0x7ff
+100005da:	613b      	str	r3, [r7, #16]
   sConfig.OffsetNumber = ADC_OFFSET_NONE;
-100005da:	2304      	movs	r3, #4
-100005dc:	617b      	str	r3, [r7, #20]
+100005dc:	2304      	movs	r3, #4
+100005de:	617b      	str	r3, [r7, #20]
   sConfig.Offset = 0;
-100005de:	2300      	movs	r3, #0
-100005e0:	61bb      	str	r3, [r7, #24]
+100005e0:	2300      	movs	r3, #0
+100005e2:	61bb      	str	r3, [r7, #24]
   if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
-100005e2:	1d3b      	adds	r3, r7, #4
-100005e4:	4619      	mov	r1, r3
-100005e6:	4813      	ldr	r0, [pc, #76]	; (10000634 <MX_ADC2_Init+0xf0>)
-100005e8:	f001 f982 	bl	100018f0 <HAL_ADC_ConfigChannel>
-100005ec:	4603      	mov	r3, r0
-100005ee:	2b00      	cmp	r3, #0
-100005f0:	d001      	beq.n	100005f6 <MX_ADC2_Init+0xb2>
+100005e4:	1d3b      	adds	r3, r7, #4
+100005e6:	4619      	mov	r1, r3
+100005e8:	4812      	ldr	r0, [pc, #72]	; (10000634 <MX_ADC2_Init+0xf0>)
+100005ea:	f001 f981 	bl	100018f0 <HAL_ADC_ConfigChannel>
+100005ee:	4603      	mov	r3, r0
+100005f0:	2b00      	cmp	r3, #0
+100005f2:	d001      	beq.n	100005f8 <MX_ADC2_Init+0xb4>
   {
     Error_Handler();
-100005f2:	f000 f8d3 	bl	1000079c <Error_Handler>
+100005f4:	f000 f8d2 	bl	1000079c <Error_Handler>
   }
   /* USER CODE BEGIN ADC2_Init 2 */
   __HAL_RCC_VREF_CLK_ENABLE(); // Enable the VREF clock
-100005f6:	f04f 43a0 	mov.w	r3, #1342177280	; 0x50000000
-100005fa:	f44f 5200 	mov.w	r2, #8192	; 0x2000
-100005fe:	f8c3 2a90 	str.w	r2, [r3, #2704]	; 0xa90
+100005f8:	f04f 43a0 	mov.w	r3, #1342177280	; 0x50000000
+100005fc:	f44f 5200 	mov.w	r2, #8192	; 0x2000
+10000600:	f8c3 2a90 	str.w	r2, [r3, #2704]	; 0xa90
     HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE); // Disable the high impedance mode which is the default one read page 1694 of refman
-10000602:	2000      	movs	r0, #0
-10000604:	f000 fc28 	bl	10000e58 <HAL_SYSCFG_VREFBUF_HighImpedanceConfig>
+10000604:	2000      	movs	r0, #0
+10000606:	f000 fc27 	bl	10000e58 <HAL_SYSCFG_VREFBUF_HighImpedanceConfig>
     HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE1); // To set the volage to 2.5v
-10000608:	2000      	movs	r0, #0
-1000060a:	f000 fc11 	bl	10000e30 <HAL_SYSCFG_VREFBUF_VoltageScalingConfig>
+1000060a:	2000      	movs	r0, #0
+1000060c:	f000 fc10 	bl	10000e30 <HAL_SYSCFG_VREFBUF_VoltageScalingConfig>
     HAL_SYSCFG_EnableVREFBUF(); // To enable VREFBUF
-1000060e:	f000 fc37 	bl	10000e80 <HAL_SYSCFG_EnableVREFBUF>
+10000610:	f000 fc36 	bl	10000e80 <HAL_SYSCFG_EnableVREFBUF>
 
     if(HAL_ADCEx_Calibration_Start(&hadc2, ADC_CALIB_OFFSET_LINEARITY, ADC_SINGLE_ENDED) != HAL_OK)
-10000612:	f240 72ff 	movw	r2, #2047	; 0x7ff
-10000616:	f04f 1101 	mov.w	r1, #65537	; 0x10001
-1000061a:	4806      	ldr	r0, [pc, #24]	; (10000634 <MX_ADC2_Init+0xf0>)
-1000061c:	f001 fe2c 	bl	10002278 <HAL_ADCEx_Calibration_Start>
-10000620:	4603      	mov	r3, r0
-10000622:	2b00      	cmp	r3, #0
-10000624:	d001      	beq.n	1000062a <MX_ADC2_Init+0xe6>
+10000614:	f240 72ff 	movw	r2, #2047	; 0x7ff
+10000618:	f04f 1101 	mov.w	r1, #65537	; 0x10001
+1000061c:	4805      	ldr	r0, [pc, #20]	; (10000634 <MX_ADC2_Init+0xf0>)
+1000061e:	f001 fe2b 	bl	10002278 <HAL_ADCEx_Calibration_Start>
+10000622:	4603      	mov	r3, r0
+10000624:	2b00      	cmp	r3, #0
+10000626:	d001      	beq.n	1000062c <MX_ADC2_Init+0xe8>
     {
       /* Calibration Error */
       Error_Handler();
-10000626:	f000 f8b9 	bl	1000079c <Error_Handler>
+10000628:	f000 f8b8 	bl	1000079c <Error_Handler>
     }
   /* USER CODE END ADC2_Init 2 */
 
 }
-1000062a:	bf00      	nop
-1000062c:	3720      	adds	r7, #32
-1000062e:	46bd      	mov	sp, r7
-10000630:	bd80      	pop	{r7, pc}
-10000632:	bf00      	nop
+1000062c:	bf00      	nop
+1000062e:	3720      	adds	r7, #32
+10000630:	46bd      	mov	sp, r7
+10000632:	bd80      	pop	{r7, pc}
 10000634:	100201c8 	.word	0x100201c8
 10000638:	48003100 	.word	0x48003100
 1000063c:	19200040 	.word	0x19200040
@@ -1050,9 +1049,9 @@ static void MX_DMA_Init(void)
 
   /* DMA interrupt init */
   /* DMA2_Stream0_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 1, 0);
 10000718:	2200      	movs	r2, #0
-1000071a:	2100      	movs	r1, #0
+1000071a:	2101      	movs	r1, #1
 1000071c:	2038      	movs	r0, #56	; 0x38
 1000071e:	f001 feea 	bl	100024f6 <HAL_NVIC_SetPriority>
   HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);

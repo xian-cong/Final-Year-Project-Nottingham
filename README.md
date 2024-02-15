@@ -38,6 +38,7 @@ pip install -r requirements.txt
 
 ### Run the Program
 ```
+conda activate fyp_venv
 python3 main.py
 ```
 

@@ -1,4 +1,4 @@
-../Core/Src/main.c:97:5:main	72	static
+../Core/Src/main.c:97:5:main	80	static
 ../Core/Src/main.c:201:6:SystemClock_Config	336	static
 ../Core/Src/main.c:286:6:PeriphCommonClock_Config	352	static
 ../Core/Src/main.c:305:13:MX_ADC2_Init	40	static

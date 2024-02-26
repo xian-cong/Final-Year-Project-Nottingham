@@ -175,9 +175,9 @@ int main(void)
 	      			  buf_len = sprintf(buf, "%8.6f ", aiOutData[i]);
 	      			  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
 	      		  }
-//	      		  uint32_t class = argmax(aiOutData, AI_EMOTION_MODEL_OUT_1_SIZE);
-//	      		  buf_len = sprintf(buf, "Prediction : %d - %s\r\n", (int) class, emotions[class]);
-//	      		  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
+	      		  uint32_t class = argmax(aiOutData, AI_EMOTION_MODEL_OUT_1_SIZE);
+	      		  buf_len = sprintf(buf, "Prediction : %d - %s\r\n", (int) class, emotions[class]);
+	      		  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
 	      }
 
 	  }

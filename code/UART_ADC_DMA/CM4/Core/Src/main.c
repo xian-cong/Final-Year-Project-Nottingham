@@ -134,39 +134,6 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  /////////////////////////////////read adc voltage////////////////////////////////
-//
-//	    		  for (int i = 0; i<1024; i++) {
-//	    			  buf_Value[i] = (float)(buf[i])*3.3/65536; // 16 bit, 3.3V
-//
-//	    	/////////////////////////////////print adc voltage////////////////////////////////
-//
-//	    			  int lo_plus = HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_11);
-//	    			  int lo_min =  HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_14);
-//
-//	  				  char *tmpSign = (buf_Value[i] < 0) ? "-" : "";
-//	  				  float tmpVal = (buf_Value[i] < 0) ? -buf_Value[i] : buf_Value[i];
-//
-//	  				  int tmpInt1 = tmpVal;                  // Get the integer (678).
-//	  				  float tmpFrac = tmpVal - tmpInt1;      // Get fraction (0.0123).
-//	  				  int tmpInt2 = trunc(tmpFrac * 10000);  // Turn into integer (123).
-//
-//	    			  if ((lo_plus == 1) || (lo_min ==1 )) {
-//	    				  sprintf(arr, "!\n");
-//	    			  }
-//	    			  else {
-//	    				  // Print as parts, note that you need 0-padding for fractional bit.
-//	    				  sprintf (arr, "adc_read = %s%d.%04d\r\n", tmpSign, tmpInt1, tmpInt2);
-//	    				  }
-//
-//
-//	    			  //	    		  sprintf(arr, "%g\r\n", buf_Value[i]);
-//	    			  HAL_UART_Transmit(&huart4, (uint8_t*)arr, strlen(arr), HAL_MAX_DELAY);
-//	    			  HAL_Delay(1);
-//	    		  }
-//	    	//////////////////////////////////////////////////////////////////////////////////////
-
-
 	  HAL_ADC_Start(&hadc2);
 	  HAL_ADC_PollForConversion(&hadc2, HAL_MAX_DELAY);
 	  raw = HAL_ADC_GetValue(&hadc2);

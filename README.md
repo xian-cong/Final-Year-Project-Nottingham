@@ -54,6 +54,9 @@ python3 main.py
 ### Hardware Setup
 <div style="text-align:center"><img src="img/Hardware%20connections.png" alt="Hardware Setup" width="50%" height="50%"></div>
 
+### Sensor Connection
+![Sensor Connection](img/sensor%20hardware%20connection.drawio.png)
+
 ## Time Management
 ### Gantt Chart
 ![Gantt Chart](links%20and%20documents/gantt%20chart/Gantt%20Chart_3-1.png)

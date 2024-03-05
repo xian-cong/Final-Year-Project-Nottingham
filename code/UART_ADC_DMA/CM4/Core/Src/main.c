@@ -79,11 +79,8 @@ int MX_OPENAMP_Init(int RPMsgRole, rpmsg_ns_bind_cb ns_bind_cb);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-//	uint16_t buf[1024]; //array to store dma levels
-//	float buf_Value[1024]; //array to store voltage value
-//	char arr[100]; //array for dma sprintf
-	  uint32_t raw = 0;
-	  char msg[100];
+  uint32_t raw = 0;
+  char msg[100];
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -304,8 +301,8 @@ static void MX_ADC2_Init(void)
   }
   /* USER CODE BEGIN ADC2_Init 2 */
   __HAL_RCC_VREF_CLK_ENABLE(); // Enable the VREF clock
-    HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE); // Disable the high impedance mode which is the default one read page 1694 of refman
-    HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE1); // To set the volage to 2.5v
+    HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE);
+    HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE1);
     HAL_SYSCFG_EnableVREFBUF(); // To enable VREFBUF
 
     if(HAL_ADCEx_Calibration_Start(&hadc2, ADC_CALIB_OFFSET_LINEARITY, ADC_SINGLE_ENDED) != HAL_OK)

@@ -1,7 +1,7 @@
 {
     "_allocate_inputs": 4,
     "_allocate_outputs": 4,
-    "cli_parameters": "generate --name emotion_model -m D:/Nottingham/FYP/Final-Year-Project-Nottingham/model/ecg_emotion_model_2class_2500in.tflite --type tflite --compression medium --verbosity 1 --workspace C:\\Users\\user\\AppData\\Local\\Temp\\mxAI_workspace894667320302007605465381379396710 --output C:\\Users\\user\\.stm32cubemx\\emotion_model_output --allocate-inputs --series stm32mp1 --allocate-outputs",
+    "cli_parameters": "analyze --name emotion_model -m D:/Nottingham/FYP/Final-Year-Project-Nottingham/model/ecg_emotion_model_2class_2500in.tflite --type tflite --compression medium --verbosity 1 --workspace C:\\Users\\user\\AppData\\Local\\Temp\\mxAI_workspace8942357698460017778008905829178208 --output C:\\Users\\user\\.stm32cubemx\\emotion_model_output --allocate-inputs --series stm32mp1 --allocate-outputs",
     "cli_version": {
         "major": 1,
         "micro": 0,
@@ -15,10 +15,10 @@
             "gemm_0_weights": 8.0
         }
     },
-    "date_time": "Fri Mar 15 01:15:33 2024",
+    "date_time": "Fri Mar 15 01:14:50 2024",
     "error": 0,
     "error_str": [],
-    "exec_cmd": "generate",
+    "exec_cmd": "analyze",
     "exec_duration": 0.0,
     "hash": "cc54250d462ad79fd8e5e57d526e9151",
     "inputs": [

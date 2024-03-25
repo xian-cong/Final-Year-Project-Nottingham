@@ -1026,6 +1026,13 @@
 	/* USER CODE END m4_stmicroelectronics.x-cube-ai.8.1.0_m4 */
 };
 
+&m4_timers16{
+	status = "okay";
+
+	/* USER CODE BEGIN m4_timers16 */
+	/* USER CODE END m4_timers16 */
+};
+
 &m4_uart4{
 	pinctrl-names = "default";
 	pinctrl-0 = <&m4_uart4_pins_mx>;

@@ -54,6 +54,8 @@ CRC_HandleTypeDef hcrc2;
 
 IPCC_HandleTypeDef hipcc;
 
+TIM_HandleTypeDef htim16;
+
 UART_HandleTypeDef huart4;
 
 /* USER CODE BEGIN PV */
@@ -78,6 +80,7 @@ static void MX_IPCC_Init(void);
 static void MX_CRC2_Init(void);
 static void MX_UART4_Init(void);
 static void MX_ADC2_Init(void);
+static void MX_TIM16_Init(void);
 int MX_OPENAMP_Init(int RPMsgRole, rpmsg_ns_bind_cb ns_bind_cb);
 /* USER CODE BEGIN PFP */
 static void AI_Init(void);
@@ -99,6 +102,9 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	char buf[50]; // buffer for serial output string
 	int buf_len = 0;
+
+	uint32_t timestamp;
+//	float y_val;
 
   /* USER CODE END 1 */
 
@@ -139,10 +145,10 @@ int main(void)
   MX_CRC2_Init();
   MX_UART4_Init();
   MX_ADC2_Init();
+  MX_TIM16_Init();
   /* USER CODE BEGIN 2 */
-   AI_Init();
-  // start timer/counter
-  // HAL_TIM_Base_Start(&htim16);
+  AI_Init();
+  HAL_TIM_Base_Start(&htim16);
   buf_len = sprintf(buf, "\r\n\r\nSTM32 X-Cube-AI test\r\n");
   HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
   /* USER CODE END 2 */
@@ -158,6 +164,7 @@ int main(void)
 	      HAL_Delay(1);
 
 	      if (i == AI_EMOTION_MODEL_IN_1_SIZE) {
+	    	  timestamp = htim16.Instance->CNT;
 	      		  buf_len = sprintf(buf, "Running inference\r\n");
 	      		  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
 
@@ -167,9 +174,18 @@ int main(void)
 	      			  buf_len = sprintf(buf, "%8.6f ", aiOutData[i]);
 	      			  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
 	      		  }
-	      		  uint32_t class = argmax(aiOutData, AI_EMOTION_MODEL_OUT_1_SIZE);
-	      		  buf_len = sprintf(buf, "Prediction : %d - %s\r\n", (int) class, emotions[class]);
-	      		  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
+//	      		  uint32_t class = argmax(aiOutData, AI_EMOTION_MODEL_OUT_1_SIZE);
+//	      		  buf_len = sprintf(buf, "Prediction : %d - %s\r\n Duration : %lu\r\n", (int) class, emotions[class], htim16.Instance->CNT - timestamp);
+//	      		  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
+	      		if (aiOutData[0] != 0.0 || aiOutData[1] != 1.0) {
+	      		                uint32_t class = argmax(aiOutData, AI_EMOTION_MODEL_OUT_1_SIZE);
+	      		                buf_len = sprintf(buf, "Prediction : %d - %s\r\n Duration : %lu\r\n", (int)class, emotions[class], htim16.Instance->CNT - timestamp);
+	      		                HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
+	      		            }
+	      		            else {
+	      		                buf_len = sprintf(buf, "Sensor Detached\r\n");
+	      		                HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
+	      		            }
 	      }
 
 	  }
@@ -215,18 +231,18 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL2.PLLP = 2;
   RCC_OscInitStruct.PLL2.PLLQ = 1;
   RCC_OscInitStruct.PLL2.PLLR = 1;
-  RCC_OscInitStruct.PLL2.PLLFRACV = 0x1400;
+  RCC_OscInitStruct.PLL2.PLLFRACV = 5120;
   RCC_OscInitStruct.PLL2.PLLMODE = RCC_PLL_FRACTIONAL;
   RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL3.PLLSource = RCC_PLL3SOURCE_HSE;
-  RCC_OscInitStruct.PLL3.PLLM = 2;
-  RCC_OscInitStruct.PLL3.PLLN = 34;
+  RCC_OscInitStruct.PLL3.PLLSource = RCC_PLL3SOURCE_HSI;
+  RCC_OscInitStruct.PLL3.PLLM = 4;
+  RCC_OscInitStruct.PLL3.PLLN = 25;
   RCC_OscInitStruct.PLL3.PLLP = 2;
-  RCC_OscInitStruct.PLL3.PLLQ = 17;
+  RCC_OscInitStruct.PLL3.PLLQ = 4;
   RCC_OscInitStruct.PLL3.PLLR = 37;
   RCC_OscInitStruct.PLL3.PLLRGE = RCC_PLL3IFRANGE_1;
-  RCC_OscInitStruct.PLL3.PLLFRACV = 6660;
-  RCC_OscInitStruct.PLL3.PLLMODE = RCC_PLL_FRACTIONAL;
+  RCC_OscInitStruct.PLL3.PLLFRACV = 0;
+  RCC_OscInitStruct.PLL3.PLLMODE = RCC_PLL_INTEGER;
   RCC_OscInitStruct.PLL4.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL4.PLLSource = RCC_PLL4SOURCE_HSE;
   RCC_OscInitStruct.PLL4.PLLM = 4;
@@ -409,6 +425,38 @@ static void MX_IPCC_Init(void)
   /* USER CODE BEGIN IPCC_Init 2 */
 
   /* USER CODE END IPCC_Init 2 */
+
+}
+
+/**
+  * @brief TIM16 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM16_Init(void)
+{
+
+  /* USER CODE BEGIN TIM16_Init 0 */
+
+  /* USER CODE END TIM16_Init 0 */
+
+  /* USER CODE BEGIN TIM16_Init 1 */
+
+  /* USER CODE END TIM16_Init 1 */
+  htim16.Instance = TIM16;
+  htim16.Init.Prescaler = 197;
+  htim16.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim16.Init.Period = 65535;
+  htim16.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim16.Init.RepetitionCounter = 0;
+  htim16.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim16) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM16_Init 2 */
+
+  /* USER CODE END TIM16_Init 2 */
 
 }
 

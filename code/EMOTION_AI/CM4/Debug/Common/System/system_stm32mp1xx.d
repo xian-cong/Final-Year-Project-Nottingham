@@ -29,6 +29,8 @@ Common/System/system_stm32mp1xx.o: \
  ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_ipcc.h \
  ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_pwr.h \
  ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_pwr_ex.h \
+ ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_tim.h \
+ ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_tim_ex.h \
  ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_uart.h \
  ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_uart_ex.h
 ../../Drivers/CMSIS/Device/ST/STM32MP1xx/Include/stm32mp1xx.h:
@@ -60,5 +62,7 @@ Common/System/system_stm32mp1xx.o: \
 ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_ipcc.h:
 ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_pwr.h:
 ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_pwr_ex.h:
+../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_tim.h:
+../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_tim_ex.h:
 ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_uart.h:
 ../../Drivers/STM32MP1xx_HAL_Driver/Inc/stm32mp1xx_hal_uart_ex.h:

@@ -1,6 +1,6 @@
 Neural Network Tools for STM32 family v1.7.0 (stm.ai v8.1.0-19520)
-Created date          : 2024-03-18 22:10:22
-Parameters            : generate --name emotion_model -m D:/Nottingham/FYP/Final-Year-Project-Nottingham/model/ecg_emotion_model_2class_500in_CNN.tflite --type tflite --compression high --verbosity 1 --workspace C:\Users\user\AppData\Local\Temp\mxAI_workspace344300515085004957977667976643309 --output C:\Users\user\.stm32cubemx\emotion_model_output --allocate-inputs --series stm32mp1 --allocate-outputs
+Created date          : 2024-03-26 02:00:13
+Parameters            : generate --name emotion_model -m D:/Nottingham/FYP/Final-Year-Project-Nottingham/model/ecg_emotion_model_2class_500in_CNN.tflite --type tflite --compression high --verbosity 1 --workspace C:\Users\user\AppData\Local\Temp\mxAI_workspace6530209366966004022442005451348552 --output C:\Users\user\.stm32cubemx\emotion_model_output --allocate-inputs --series stm32mp1 --allocate-outputs
 
 Exec/report summary (generate)
 -------------------------------------------------------------------------------------------------------------------------
@@ -11,7 +11,7 @@ compression        :   high
 options            :   allocate-inputs, allocate-outputs                                                                 
 optimization       :   balanced                                                                                          
 target/series      :   stm32mp1                                                                                          
-workspace dir      :   C:\Users\user\AppData\Local\Temp\mxAI_workspace344300515085004957977667976643309                  
+workspace dir      :   C:\Users\user\AppData\Local\Temp\mxAI_workspace6530209366966004022442005451348552                 
 output dir         :   C:\Users\user\.stm32cubemx\emotion_model_output                                                   
 model_fmt          :   float                                                                                             
 model_name         :   ecg_emotion_model_2class_500in_CNN                                                                

@@ -140,22 +140,15 @@ int main(void)
   MX_UART4_Init();
   MX_ADC2_Init();
   /* USER CODE BEGIN 2 */
-
    AI_Init();
-
-
   // start timer/counter
   // HAL_TIM_Base_Start(&htim16);
-
-  // test print output
   buf_len = sprintf(buf, "\r\n\r\nSTM32 X-Cube-AI test\r\n");
   HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  // uint32_t write_index = 0;
   while (1)
   {
 	  for (int i = 0; i < AI_EMOTION_MODEL_IN_1_SIZE+1; ++i) {
@@ -169,7 +162,6 @@ int main(void)
 	      		  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
 
 	      		  AI_Run(aiInData, aiOutData);
-
 	      		  /* Output results */
 	      		  for (uint32_t i = 0; i < AI_EMOTION_MODEL_OUT_1_SIZE; i++) {
 	      			  buf_len = sprintf(buf, "%8.6f ", aiOutData[i]);
@@ -181,9 +173,6 @@ int main(void)
 	      }
 
 	  }
-
-
-
 	  // Wait before doing it again
 	  HAL_Delay(500);
 
@@ -351,8 +340,10 @@ static void MX_ADC2_Init(void)
   }
   /* USER CODE BEGIN ADC2_Init 2 */
   __HAL_RCC_VREF_CLK_ENABLE(); // Enable the VREF clock
-      HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE); // Disable the high impedance mode which is the default one read page 1694 of refman
-      HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE1); // To set the volage to 2.5v
+  	  // Disable the high impedance mode which is the default one read page 1694 of refman
+      HAL_SYSCFG_VREFBUF_HighImpedanceConfig(SYSCFG_VREFBUF_HIGH_IMPEDANCE_DISABLE);
+      // To set the volage to 2.5v
+      HAL_SYSCFG_VREFBUF_VoltageScalingConfig(SYSCFG_VREFBUF_VOLTAGE_SCALE1);
       HAL_SYSCFG_EnableVREFBUF(); // To enable VREFBUF
 
       if(HAL_ADCEx_Calibration_Start(&hadc2, ADC_CALIB_OFFSET_LINEARITY, ADC_SINGLE_ENDED) != HAL_OK)

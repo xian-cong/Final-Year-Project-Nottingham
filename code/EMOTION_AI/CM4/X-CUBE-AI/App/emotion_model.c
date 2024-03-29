@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    emotion_model.c
   * @author  AST Embedded Analytics Research Platform
-  * @date    Tue Mar 26 02:00:13 2024
+  * @date    Wed Mar 27 01:47:31 2024
   * @brief   AI Tool Automatic Code Generator for Embedded NN computing
   ******************************************************************************
   * @attention
@@ -42,7 +42,7 @@
 #endif
 
 #undef AI_TOOLS_DATE_TIME
-#define AI_TOOLS_DATE_TIME   "Tue Mar 26 02:00:13 2024"
+#define AI_TOOLS_DATE_TIME   "Wed Mar 27 01:47:31 2024"
 
 #undef AI_TOOLS_COMPILE_TIME
 #define AI_TOOLS_COMPILE_TIME    __DATE__ " " __TIME__
@@ -58,7 +58,7 @@ static ai_ptr g_emotion_model_weights_map[1] = AI_C_ARRAY_INIT;
 /**  Array declarations section  **********************************************/
 /* Array#0 */
 AI_ARRAY_OBJ_DECLARE(
-  gemm_6_weights_array, AI_ARRAY_FORMAT_LUT4_FLOAT,
+  gemm_6_weights_array, AI_ARRAY_FORMAT_LUT8_FLOAT,
   NULL, NULL, 31744, AI_STATIC)
 /* Array#1 */
 AI_ARRAY_OBJ_DECLARE(
@@ -133,7 +133,7 @@ AI_ARRAY_OBJ_DECLARE(
 AI_TENSOR_OBJ_DECLARE(
   gemm_6_weights, AI_STATIC,
   0, 0x0,
-  AI_SHAPE_INIT(4, 3968, 8, 1, 1), AI_STRIDE_INIT(4, 1, 1984, 15872, 15872),
+  AI_SHAPE_INIT(4, 3968, 8, 1, 1), AI_STRIDE_INIT(4, 1, 3968, 31744, 31744),
   1, &gemm_6_weights_array, NULL)
 
 /* Tensor #1 */
@@ -454,8 +454,8 @@ AI_LAYER_OBJ_DECLARE(
 AI_NETWORK_OBJ_DECLARE(
   AI_NET_OBJ_INSTANCE, AI_STATIC,
   AI_BUFFER_INIT(AI_FLAG_NONE,  AI_BUFFER_FORMAT_U8,
-    AI_BUFFER_SHAPE_INIT(AI_SHAPE_BCWH, 4, 1, 16536, 1, 1),
-    16536, NULL, NULL),
+    AI_BUFFER_SHAPE_INIT(AI_SHAPE_BCWH, 4, 1, 33368, 1, 1),
+    33368, NULL, NULL),
   AI_BUFFER_INIT(AI_FLAG_NONE,  AI_BUFFER_FORMAT_U8,
     AI_BUFFER_SHAPE_INIT(AI_SHAPE_BCWH, 4, 1, 33744, 1, 1),
     33744, NULL, NULL),
@@ -470,8 +470,8 @@ AI_NETWORK_OBJ_DECLARE(
   AI_BUFFER_ARRAY_OBJ_INIT_STATIC(
   	AI_FLAG_NONE, 1,
     AI_BUFFER_INIT(AI_FLAG_NONE,  AI_BUFFER_FORMAT_U8,
-      AI_BUFFER_SHAPE_INIT(AI_SHAPE_BCWH, 4, 1, 16536, 1, 1),
-      16536, NULL, NULL)
+      AI_BUFFER_SHAPE_INIT(AI_SHAPE_BCWH, 4, 1, 33368, 1, 1),
+      33368, NULL, NULL)
   ),
   AI_BUFFER_ARRAY_OBJ_INIT_STATIC(
   	AI_FLAG_NONE, 1,
@@ -545,36 +545,36 @@ ai_bool emotion_model_configure_weights(
     /* Updating weights (byte) offsets */
     
     gemm_6_weights_array.format |= AI_FMT_FLAG_CONST;
-    gemm_6_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 64);
+    gemm_6_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 1024);
     gemm_6_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 0);
     
     gemm_6_bias_array.format |= AI_FMT_FLAG_CONST;
-    gemm_6_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 15936);
-    gemm_6_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 15936);
+    gemm_6_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32768);
+    gemm_6_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32768);
     
     gemm_8_weights_array.format |= AI_FMT_FLAG_CONST;
-    gemm_8_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 15968);
-    gemm_8_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 15968);
+    gemm_8_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32800);
+    gemm_8_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32800);
     
     gemm_8_bias_array.format |= AI_FMT_FLAG_CONST;
-    gemm_8_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 16096);
-    gemm_8_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 16096);
+    gemm_8_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32928);
+    gemm_8_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32928);
     
     gemm_10_weights_array.format |= AI_FMT_FLAG_CONST;
-    gemm_10_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 16112);
-    gemm_10_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 16112);
+    gemm_10_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32944);
+    gemm_10_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32944);
     
     gemm_10_bias_array.format |= AI_FMT_FLAG_CONST;
-    gemm_10_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 16144);
-    gemm_10_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 16144);
+    gemm_10_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32976);
+    gemm_10_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32976);
     
     conv2d_1_weights_array.format |= AI_FMT_FLAG_CONST;
-    conv2d_1_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 16152);
-    conv2d_1_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 16152);
+    conv2d_1_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32984);
+    conv2d_1_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32984);
     
     conv2d_1_bias_array.format |= AI_FMT_FLAG_CONST;
-    conv2d_1_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 16472);
-    conv2d_1_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 16472);
+    conv2d_1_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 33304);
+    conv2d_1_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 33304);
     
     return true;
   }

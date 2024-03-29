@@ -9,25 +9,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .startup_copro_fw.Reset_Handler 00000050  10012520  10012520  00032520  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  3 .rodata       00004940  10012580  10012580  00032580  2**5
+  3 .rodata       00008b00  10012580  10012580  00032580  2**5
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  4 .ARM.extab    00000000  10016ec0  10016ec0  00040dcc  2**0
+  4 .ARM.extab    00000000  1001b080  1001b080  00040dcc  2**0
                   CONTENTS
-  5 .ARM          00000000  10016ec0  10016ec0  00040dcc  2**0
+  5 .ARM          00000000  1001b080  1001b080  00040dcc  2**0
                   CONTENTS
-  6 .preinit_array 00000000  10016ec0  10016ec0  00040dcc  2**0
+  6 .preinit_array 00000000  1001b080  1001b080  00040dcc  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  7 .init_array   00000004  10016ec0  10016ec0  00036ec0  2**2
+  7 .init_array   00000004  1001b080  1001b080  0003b080  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .fini_array   00000004  10016ec4  10016ec4  00036ec4  2**2
+  8 .fini_array   00000004  1001b084  1001b084  0003b084  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .data         00000d40  10020000  10016ec8  00040000  2**2
+  9 .data         00000d40  10020000  1001b088  00040000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
- 10 .resource_table 0000008c  10020d40  10017c08  00040d40  2**2
+ 10 .resource_table 0000008c  10020d40  1001bdc8  00040d40  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
- 11 .bss          00009054  10020dcc  10017c94  00040dcc  2**2
+ 11 .bss          00009054  10020dcc  1001be54  00040dcc  2**2
                   ALLOC
- 12 ._user_heap_stack 00001000  10029e20  10020ce8  00040dcc  2**0
+ 12 ._user_heap_stack 00001000  10029e20  10024ea8  00040dcc  2**0
                   ALLOC
  13 .ARM.attributes 00000030  00000000  00000000  00040dcc  2**0
                   CONTENTS, READONLY
@@ -30942,7 +30942,7 @@ ai_bool emotion_model_configure_weights(
 1000cc90:	f000 fa4c 	bl	1000d12c <ai_platform_get_weights_map>
 1000cc94:	4603      	mov	r3, r0
 1000cc96:	2b00      	cmp	r3, #0
-1000cc98:	f000 809b 	beq.w	1000cdd2 <emotion_model_configure_weights+0x152>
+1000cc98:	f000 809c 	beq.w	1000cdd4 <emotion_model_configure_weights+0x154>
     /* Updating weights (byte) offsets */
     
     gemm_6_weights_array.format |= AI_FMT_FLAG_CONST;
@@ -30951,180 +30951,179 @@ ai_bool emotion_model_configure_weights(
 1000cca0:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
 1000cca4:	4a51      	ldr	r2, [pc, #324]	; (1000cdec <emotion_model_configure_weights+0x16c>)
 1000cca6:	6013      	str	r3, [r2, #0]
-    gemm_6_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 64);
+    gemm_6_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 1024);
 1000cca8:	4b4f      	ldr	r3, [pc, #316]	; (1000cde8 <emotion_model_configure_weights+0x168>)
 1000ccaa:	681b      	ldr	r3, [r3, #0]
-1000ccac:	3340      	adds	r3, #64	; 0x40
-1000ccae:	4a4f      	ldr	r2, [pc, #316]	; (1000cdec <emotion_model_configure_weights+0x16c>)
-1000ccb0:	6093      	str	r3, [r2, #8]
+1000ccac:	f503 6380 	add.w	r3, r3, #1024	; 0x400
+1000ccb0:	4a4e      	ldr	r2, [pc, #312]	; (1000cdec <emotion_model_configure_weights+0x16c>)
+1000ccb2:	6093      	str	r3, [r2, #8]
     gemm_6_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 0);
-1000ccb2:	4b4d      	ldr	r3, [pc, #308]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000ccb4:	681b      	ldr	r3, [r3, #0]
-1000ccb6:	4a4d      	ldr	r2, [pc, #308]	; (1000cdec <emotion_model_configure_weights+0x16c>)
-1000ccb8:	60d3      	str	r3, [r2, #12]
+1000ccb4:	4b4c      	ldr	r3, [pc, #304]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000ccb6:	681b      	ldr	r3, [r3, #0]
+1000ccb8:	4a4c      	ldr	r2, [pc, #304]	; (1000cdec <emotion_model_configure_weights+0x16c>)
+1000ccba:	60d3      	str	r3, [r2, #12]
     
     gemm_6_bias_array.format |= AI_FMT_FLAG_CONST;
-1000ccba:	4b4d      	ldr	r3, [pc, #308]	; (1000cdf0 <emotion_model_configure_weights+0x170>)
-1000ccbc:	681b      	ldr	r3, [r3, #0]
-1000ccbe:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
-1000ccc2:	4a4b      	ldr	r2, [pc, #300]	; (1000cdf0 <emotion_model_configure_weights+0x170>)
-1000ccc4:	6013      	str	r3, [r2, #0]
-    gemm_6_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 15936);
-1000ccc6:	4b48      	ldr	r3, [pc, #288]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000ccc8:	681b      	ldr	r3, [r3, #0]
-1000ccca:	f503 5379 	add.w	r3, r3, #15936	; 0x3e40
-1000ccce:	4a48      	ldr	r2, [pc, #288]	; (1000cdf0 <emotion_model_configure_weights+0x170>)
-1000ccd0:	6093      	str	r3, [r2, #8]
-    gemm_6_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 15936);
-1000ccd2:	4b45      	ldr	r3, [pc, #276]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000ccd4:	681b      	ldr	r3, [r3, #0]
-1000ccd6:	f503 5379 	add.w	r3, r3, #15936	; 0x3e40
-1000ccda:	4a45      	ldr	r2, [pc, #276]	; (1000cdf0 <emotion_model_configure_weights+0x170>)
-1000ccdc:	60d3      	str	r3, [r2, #12]
+1000ccbc:	4b4c      	ldr	r3, [pc, #304]	; (1000cdf0 <emotion_model_configure_weights+0x170>)
+1000ccbe:	681b      	ldr	r3, [r3, #0]
+1000ccc0:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
+1000ccc4:	4a4a      	ldr	r2, [pc, #296]	; (1000cdf0 <emotion_model_configure_weights+0x170>)
+1000ccc6:	6013      	str	r3, [r2, #0]
+    gemm_6_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32768);
+1000ccc8:	4b47      	ldr	r3, [pc, #284]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000ccca:	681b      	ldr	r3, [r3, #0]
+1000cccc:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000ccd0:	4a47      	ldr	r2, [pc, #284]	; (1000cdf0 <emotion_model_configure_weights+0x170>)
+1000ccd2:	6093      	str	r3, [r2, #8]
+    gemm_6_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32768);
+1000ccd4:	4b44      	ldr	r3, [pc, #272]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000ccd6:	681b      	ldr	r3, [r3, #0]
+1000ccd8:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000ccdc:	4a44      	ldr	r2, [pc, #272]	; (1000cdf0 <emotion_model_configure_weights+0x170>)
+1000ccde:	60d3      	str	r3, [r2, #12]
     
     gemm_8_weights_array.format |= AI_FMT_FLAG_CONST;
-1000ccde:	4b45      	ldr	r3, [pc, #276]	; (1000cdf4 <emotion_model_configure_weights+0x174>)
-1000cce0:	681b      	ldr	r3, [r3, #0]
-1000cce2:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
-1000cce6:	4a43      	ldr	r2, [pc, #268]	; (1000cdf4 <emotion_model_configure_weights+0x174>)
-1000cce8:	6013      	str	r3, [r2, #0]
-    gemm_8_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 15968);
-1000ccea:	4b3f      	ldr	r3, [pc, #252]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000ccec:	681b      	ldr	r3, [r3, #0]
-1000ccee:	f503 5379 	add.w	r3, r3, #15936	; 0x3e40
-1000ccf2:	3320      	adds	r3, #32
-1000ccf4:	4a3f      	ldr	r2, [pc, #252]	; (1000cdf4 <emotion_model_configure_weights+0x174>)
-1000ccf6:	6093      	str	r3, [r2, #8]
-    gemm_8_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 15968);
-1000ccf8:	4b3b      	ldr	r3, [pc, #236]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000ccfa:	681b      	ldr	r3, [r3, #0]
-1000ccfc:	f503 5379 	add.w	r3, r3, #15936	; 0x3e40
-1000cd00:	3320      	adds	r3, #32
-1000cd02:	4a3c      	ldr	r2, [pc, #240]	; (1000cdf4 <emotion_model_configure_weights+0x174>)
-1000cd04:	60d3      	str	r3, [r2, #12]
+1000cce0:	4b44      	ldr	r3, [pc, #272]	; (1000cdf4 <emotion_model_configure_weights+0x174>)
+1000cce2:	681b      	ldr	r3, [r3, #0]
+1000cce4:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
+1000cce8:	4a42      	ldr	r2, [pc, #264]	; (1000cdf4 <emotion_model_configure_weights+0x174>)
+1000ccea:	6013      	str	r3, [r2, #0]
+    gemm_8_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32800);
+1000ccec:	4b3e      	ldr	r3, [pc, #248]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000ccee:	681b      	ldr	r3, [r3, #0]
+1000ccf0:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000ccf4:	3320      	adds	r3, #32
+1000ccf6:	4a3f      	ldr	r2, [pc, #252]	; (1000cdf4 <emotion_model_configure_weights+0x174>)
+1000ccf8:	6093      	str	r3, [r2, #8]
+    gemm_8_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32800);
+1000ccfa:	4b3b      	ldr	r3, [pc, #236]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000ccfc:	681b      	ldr	r3, [r3, #0]
+1000ccfe:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000cd02:	3320      	adds	r3, #32
+1000cd04:	4a3b      	ldr	r2, [pc, #236]	; (1000cdf4 <emotion_model_configure_weights+0x174>)
+1000cd06:	60d3      	str	r3, [r2, #12]
     
     gemm_8_bias_array.format |= AI_FMT_FLAG_CONST;
-1000cd06:	4b3c      	ldr	r3, [pc, #240]	; (1000cdf8 <emotion_model_configure_weights+0x178>)
-1000cd08:	681b      	ldr	r3, [r3, #0]
-1000cd0a:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
-1000cd0e:	4a3a      	ldr	r2, [pc, #232]	; (1000cdf8 <emotion_model_configure_weights+0x178>)
-1000cd10:	6013      	str	r3, [r2, #0]
-    gemm_8_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 16096);
-1000cd12:	4b35      	ldr	r3, [pc, #212]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000cd14:	681b      	ldr	r3, [r3, #0]
-1000cd16:	f503 537b 	add.w	r3, r3, #16064	; 0x3ec0
-1000cd1a:	3320      	adds	r3, #32
-1000cd1c:	4a36      	ldr	r2, [pc, #216]	; (1000cdf8 <emotion_model_configure_weights+0x178>)
-1000cd1e:	6093      	str	r3, [r2, #8]
-    gemm_8_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 16096);
-1000cd20:	4b31      	ldr	r3, [pc, #196]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000cd22:	681b      	ldr	r3, [r3, #0]
-1000cd24:	f503 537b 	add.w	r3, r3, #16064	; 0x3ec0
-1000cd28:	3320      	adds	r3, #32
-1000cd2a:	4a33      	ldr	r2, [pc, #204]	; (1000cdf8 <emotion_model_configure_weights+0x178>)
-1000cd2c:	60d3      	str	r3, [r2, #12]
+1000cd08:	4b3b      	ldr	r3, [pc, #236]	; (1000cdf8 <emotion_model_configure_weights+0x178>)
+1000cd0a:	681b      	ldr	r3, [r3, #0]
+1000cd0c:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
+1000cd10:	4a39      	ldr	r2, [pc, #228]	; (1000cdf8 <emotion_model_configure_weights+0x178>)
+1000cd12:	6013      	str	r3, [r2, #0]
+    gemm_8_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32928);
+1000cd14:	4b34      	ldr	r3, [pc, #208]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000cd16:	681b      	ldr	r3, [r3, #0]
+1000cd18:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000cd1c:	33a0      	adds	r3, #160	; 0xa0
+1000cd1e:	4a36      	ldr	r2, [pc, #216]	; (1000cdf8 <emotion_model_configure_weights+0x178>)
+1000cd20:	6093      	str	r3, [r2, #8]
+    gemm_8_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32928);
+1000cd22:	4b31      	ldr	r3, [pc, #196]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000cd24:	681b      	ldr	r3, [r3, #0]
+1000cd26:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000cd2a:	33a0      	adds	r3, #160	; 0xa0
+1000cd2c:	4a32      	ldr	r2, [pc, #200]	; (1000cdf8 <emotion_model_configure_weights+0x178>)
+1000cd2e:	60d3      	str	r3, [r2, #12]
     
     gemm_10_weights_array.format |= AI_FMT_FLAG_CONST;
-1000cd2e:	4b33      	ldr	r3, [pc, #204]	; (1000cdfc <emotion_model_configure_weights+0x17c>)
-1000cd30:	681b      	ldr	r3, [r3, #0]
-1000cd32:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
-1000cd36:	4a31      	ldr	r2, [pc, #196]	; (1000cdfc <emotion_model_configure_weights+0x17c>)
-1000cd38:	6013      	str	r3, [r2, #0]
-    gemm_10_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 16112);
-1000cd3a:	4b2b      	ldr	r3, [pc, #172]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000cd3c:	681b      	ldr	r3, [r3, #0]
-1000cd3e:	f503 537b 	add.w	r3, r3, #16064	; 0x3ec0
-1000cd42:	3330      	adds	r3, #48	; 0x30
-1000cd44:	4a2d      	ldr	r2, [pc, #180]	; (1000cdfc <emotion_model_configure_weights+0x17c>)
-1000cd46:	6093      	str	r3, [r2, #8]
-    gemm_10_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 16112);
-1000cd48:	4b27      	ldr	r3, [pc, #156]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000cd4a:	681b      	ldr	r3, [r3, #0]
-1000cd4c:	f503 537b 	add.w	r3, r3, #16064	; 0x3ec0
-1000cd50:	3330      	adds	r3, #48	; 0x30
-1000cd52:	4a2a      	ldr	r2, [pc, #168]	; (1000cdfc <emotion_model_configure_weights+0x17c>)
-1000cd54:	60d3      	str	r3, [r2, #12]
+1000cd30:	4b32      	ldr	r3, [pc, #200]	; (1000cdfc <emotion_model_configure_weights+0x17c>)
+1000cd32:	681b      	ldr	r3, [r3, #0]
+1000cd34:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
+1000cd38:	4a30      	ldr	r2, [pc, #192]	; (1000cdfc <emotion_model_configure_weights+0x17c>)
+1000cd3a:	6013      	str	r3, [r2, #0]
+    gemm_10_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32944);
+1000cd3c:	4b2a      	ldr	r3, [pc, #168]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000cd3e:	681b      	ldr	r3, [r3, #0]
+1000cd40:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000cd44:	33b0      	adds	r3, #176	; 0xb0
+1000cd46:	4a2d      	ldr	r2, [pc, #180]	; (1000cdfc <emotion_model_configure_weights+0x17c>)
+1000cd48:	6093      	str	r3, [r2, #8]
+    gemm_10_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32944);
+1000cd4a:	4b27      	ldr	r3, [pc, #156]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000cd4c:	681b      	ldr	r3, [r3, #0]
+1000cd4e:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000cd52:	33b0      	adds	r3, #176	; 0xb0
+1000cd54:	4a29      	ldr	r2, [pc, #164]	; (1000cdfc <emotion_model_configure_weights+0x17c>)
+1000cd56:	60d3      	str	r3, [r2, #12]
     
     gemm_10_bias_array.format |= AI_FMT_FLAG_CONST;
-1000cd56:	4b2a      	ldr	r3, [pc, #168]	; (1000ce00 <emotion_model_configure_weights+0x180>)
-1000cd58:	681b      	ldr	r3, [r3, #0]
-1000cd5a:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
-1000cd5e:	4a28      	ldr	r2, [pc, #160]	; (1000ce00 <emotion_model_configure_weights+0x180>)
-1000cd60:	6013      	str	r3, [r2, #0]
-    gemm_10_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 16144);
-1000cd62:	4b21      	ldr	r3, [pc, #132]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000cd64:	681b      	ldr	r3, [r3, #0]
-1000cd66:	f503 537c 	add.w	r3, r3, #16128	; 0x3f00
-1000cd6a:	3310      	adds	r3, #16
-1000cd6c:	4a24      	ldr	r2, [pc, #144]	; (1000ce00 <emotion_model_configure_weights+0x180>)
-1000cd6e:	6093      	str	r3, [r2, #8]
-    gemm_10_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 16144);
-1000cd70:	4b1d      	ldr	r3, [pc, #116]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000cd72:	681b      	ldr	r3, [r3, #0]
-1000cd74:	f503 537c 	add.w	r3, r3, #16128	; 0x3f00
-1000cd78:	3310      	adds	r3, #16
-1000cd7a:	4a21      	ldr	r2, [pc, #132]	; (1000ce00 <emotion_model_configure_weights+0x180>)
-1000cd7c:	60d3      	str	r3, [r2, #12]
+1000cd58:	4b29      	ldr	r3, [pc, #164]	; (1000ce00 <emotion_model_configure_weights+0x180>)
+1000cd5a:	681b      	ldr	r3, [r3, #0]
+1000cd5c:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
+1000cd60:	4a27      	ldr	r2, [pc, #156]	; (1000ce00 <emotion_model_configure_weights+0x180>)
+1000cd62:	6013      	str	r3, [r2, #0]
+    gemm_10_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32976);
+1000cd64:	4b20      	ldr	r3, [pc, #128]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000cd66:	681b      	ldr	r3, [r3, #0]
+1000cd68:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000cd6c:	33d0      	adds	r3, #208	; 0xd0
+1000cd6e:	4a24      	ldr	r2, [pc, #144]	; (1000ce00 <emotion_model_configure_weights+0x180>)
+1000cd70:	6093      	str	r3, [r2, #8]
+    gemm_10_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32976);
+1000cd72:	4b1d      	ldr	r3, [pc, #116]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000cd74:	681b      	ldr	r3, [r3, #0]
+1000cd76:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000cd7a:	33d0      	adds	r3, #208	; 0xd0
+1000cd7c:	4a20      	ldr	r2, [pc, #128]	; (1000ce00 <emotion_model_configure_weights+0x180>)
+1000cd7e:	60d3      	str	r3, [r2, #12]
     
     conv2d_1_weights_array.format |= AI_FMT_FLAG_CONST;
-1000cd7e:	4b21      	ldr	r3, [pc, #132]	; (1000ce04 <emotion_model_configure_weights+0x184>)
-1000cd80:	681b      	ldr	r3, [r3, #0]
-1000cd82:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
-1000cd86:	4a1f      	ldr	r2, [pc, #124]	; (1000ce04 <emotion_model_configure_weights+0x184>)
-1000cd88:	6013      	str	r3, [r2, #0]
-    conv2d_1_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 16152);
-1000cd8a:	4b17      	ldr	r3, [pc, #92]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000cd8c:	681b      	ldr	r3, [r3, #0]
-1000cd8e:	f503 537c 	add.w	r3, r3, #16128	; 0x3f00
-1000cd92:	3318      	adds	r3, #24
-1000cd94:	4a1b      	ldr	r2, [pc, #108]	; (1000ce04 <emotion_model_configure_weights+0x184>)
-1000cd96:	6093      	str	r3, [r2, #8]
-    conv2d_1_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 16152);
-1000cd98:	4b13      	ldr	r3, [pc, #76]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000cd9a:	681b      	ldr	r3, [r3, #0]
-1000cd9c:	f503 537c 	add.w	r3, r3, #16128	; 0x3f00
-1000cda0:	3318      	adds	r3, #24
-1000cda2:	4a18      	ldr	r2, [pc, #96]	; (1000ce04 <emotion_model_configure_weights+0x184>)
-1000cda4:	60d3      	str	r3, [r2, #12]
+1000cd80:	4b20      	ldr	r3, [pc, #128]	; (1000ce04 <emotion_model_configure_weights+0x184>)
+1000cd82:	681b      	ldr	r3, [r3, #0]
+1000cd84:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
+1000cd88:	4a1e      	ldr	r2, [pc, #120]	; (1000ce04 <emotion_model_configure_weights+0x184>)
+1000cd8a:	6013      	str	r3, [r2, #0]
+    conv2d_1_weights_array.data = AI_PTR(g_emotion_model_weights_map[0] + 32984);
+1000cd8c:	4b16      	ldr	r3, [pc, #88]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000cd8e:	681b      	ldr	r3, [r3, #0]
+1000cd90:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000cd94:	33d8      	adds	r3, #216	; 0xd8
+1000cd96:	4a1b      	ldr	r2, [pc, #108]	; (1000ce04 <emotion_model_configure_weights+0x184>)
+1000cd98:	6093      	str	r3, [r2, #8]
+    conv2d_1_weights_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 32984);
+1000cd9a:	4b13      	ldr	r3, [pc, #76]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000cd9c:	681b      	ldr	r3, [r3, #0]
+1000cd9e:	f503 4300 	add.w	r3, r3, #32768	; 0x8000
+1000cda2:	33d8      	adds	r3, #216	; 0xd8
+1000cda4:	4a17      	ldr	r2, [pc, #92]	; (1000ce04 <emotion_model_configure_weights+0x184>)
+1000cda6:	60d3      	str	r3, [r2, #12]
     
     conv2d_1_bias_array.format |= AI_FMT_FLAG_CONST;
-1000cda6:	4b18      	ldr	r3, [pc, #96]	; (1000ce08 <emotion_model_configure_weights+0x188>)
-1000cda8:	681b      	ldr	r3, [r3, #0]
-1000cdaa:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
-1000cdae:	4a16      	ldr	r2, [pc, #88]	; (1000ce08 <emotion_model_configure_weights+0x188>)
-1000cdb0:	6013      	str	r3, [r2, #0]
-    conv2d_1_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 16472);
-1000cdb2:	4b0d      	ldr	r3, [pc, #52]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000cdb4:	681b      	ldr	r3, [r3, #0]
-1000cdb6:	f503 4380 	add.w	r3, r3, #16384	; 0x4000
-1000cdba:	3358      	adds	r3, #88	; 0x58
-1000cdbc:	4a12      	ldr	r2, [pc, #72]	; (1000ce08 <emotion_model_configure_weights+0x188>)
-1000cdbe:	6093      	str	r3, [r2, #8]
-    conv2d_1_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 16472);
-1000cdc0:	4b09      	ldr	r3, [pc, #36]	; (1000cde8 <emotion_model_configure_weights+0x168>)
-1000cdc2:	681b      	ldr	r3, [r3, #0]
-1000cdc4:	f503 4380 	add.w	r3, r3, #16384	; 0x4000
-1000cdc8:	3358      	adds	r3, #88	; 0x58
-1000cdca:	4a0f      	ldr	r2, [pc, #60]	; (1000ce08 <emotion_model_configure_weights+0x188>)
-1000cdcc:	60d3      	str	r3, [r2, #12]
+1000cda8:	4b17      	ldr	r3, [pc, #92]	; (1000ce08 <emotion_model_configure_weights+0x188>)
+1000cdaa:	681b      	ldr	r3, [r3, #0]
+1000cdac:	f043 4380 	orr.w	r3, r3, #1073741824	; 0x40000000
+1000cdb0:	4a15      	ldr	r2, [pc, #84]	; (1000ce08 <emotion_model_configure_weights+0x188>)
+1000cdb2:	6013      	str	r3, [r2, #0]
+    conv2d_1_bias_array.data = AI_PTR(g_emotion_model_weights_map[0] + 33304);
+1000cdb4:	4b0c      	ldr	r3, [pc, #48]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000cdb6:	681b      	ldr	r3, [r3, #0]
+1000cdb8:	f503 4302 	add.w	r3, r3, #33280	; 0x8200
+1000cdbc:	3318      	adds	r3, #24
+1000cdbe:	4a12      	ldr	r2, [pc, #72]	; (1000ce08 <emotion_model_configure_weights+0x188>)
+1000cdc0:	6093      	str	r3, [r2, #8]
+    conv2d_1_bias_array.data_start = AI_PTR(g_emotion_model_weights_map[0] + 33304);
+1000cdc2:	4b09      	ldr	r3, [pc, #36]	; (1000cde8 <emotion_model_configure_weights+0x168>)
+1000cdc4:	681b      	ldr	r3, [r3, #0]
+1000cdc6:	f503 4302 	add.w	r3, r3, #33280	; 0x8200
+1000cdca:	3318      	adds	r3, #24
+1000cdcc:	4a0e      	ldr	r2, [pc, #56]	; (1000ce08 <emotion_model_configure_weights+0x188>)
+1000cdce:	60d3      	str	r3, [r2, #12]
     
     return true;
-1000cdce:	2301      	movs	r3, #1
-1000cdd0:	e005      	b.n	1000cdde <emotion_model_configure_weights+0x15e>
+1000cdd0:	2301      	movs	r3, #1
+1000cdd2:	e005      	b.n	1000cde0 <emotion_model_configure_weights+0x160>
   }
   AI_ERROR_TRAP(net_ctx, INIT_FAILED, NETWORK_WEIGHTS);
-1000cdd2:	2212      	movs	r2, #18
-1000cdd4:	2130      	movs	r1, #48	; 0x30
-1000cdd6:	6878      	ldr	r0, [r7, #4]
-1000cdd8:	f000 faac 	bl	1000d334 <ai_platform_network_set_error>
+1000cdd4:	2212      	movs	r2, #18
+1000cdd6:	2130      	movs	r1, #48	; 0x30
+1000cdd8:	6878      	ldr	r0, [r7, #4]
+1000cdda:	f000 faab 	bl	1000d334 <ai_platform_network_set_error>
   return false;
-1000cddc:	2300      	movs	r3, #0
+1000cdde:	2300      	movs	r3, #0
 }
-1000cdde:	4618      	mov	r0, r3
-1000cde0:	3708      	adds	r7, #8
-1000cde2:	46bd      	mov	sp, r7
-1000cde4:	bd80      	pop	{r7, pc}
-1000cde6:	bf00      	nop
+1000cde0:	4618      	mov	r0, r3
+1000cde2:	3708      	adds	r7, #8
+1000cde4:	46bd      	mov	sp, r7
+1000cde6:	bd80      	pop	{r7, pc}
 1000cde8:	10029c10 	.word	0x10029c10
 1000cdec:	100200cc 	.word	0x100200cc
 1000cdf0:	100200dc 	.word	0x100200dc
@@ -35083,9 +35082,9 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 1000f4e0:	e7f3      	b.n	1000f4ca <__assert_func+0x12>
 1000f4e2:	bf00      	nop
 1000f4e4:	10020bd0 	.word	0x10020bd0
-1000f4e8:	10016b38 	.word	0x10016b38
-1000f4ec:	10016b45 	.word	0x10016b45
-1000f4f0:	10016b73 	.word	0x10016b73
+1000f4e8:	1001acf8 	.word	0x1001acf8
+1000f4ec:	1001ad05 	.word	0x1001ad05
+1000f4f0:	1001ad33 	.word	0x1001ad33
 
 1000f4f4 <malloc>:
 1000f4f4:	4b02      	ldr	r3, [pc, #8]	; (1000f500 <malloc+0xc>)
@@ -35720,11 +35719,11 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 1000fae0:	e7ee      	b.n	1000fac0 <_printf_float+0x2b4>
 1000fae2:	bf00      	nop
 1000fae4:	7fefffff 	.word	0x7fefffff
-1000fae8:	10016b74 	.word	0x10016b74
-1000faec:	10016b78 	.word	0x10016b78
-1000faf0:	10016b7c 	.word	0x10016b7c
-1000faf4:	10016b80 	.word	0x10016b80
-1000faf8:	10016b84 	.word	0x10016b84
+1000fae8:	1001ad34 	.word	0x1001ad34
+1000faec:	1001ad38 	.word	0x1001ad38
+1000faf0:	1001ad3c 	.word	0x1001ad3c
+1000faf4:	1001ad40 	.word	0x1001ad40
+1000faf8:	1001ad44 	.word	0x1001ad44
 1000fafc:	9a0a      	ldr	r2, [sp, #40]	; 0x28
 1000fafe:	6da3      	ldr	r3, [r4, #88]	; 0x58
 1000fb00:	429a      	cmp	r2, r3
@@ -36211,8 +36210,8 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 1000ff88:	f104 0619 	add.w	r6, r4, #25
 1000ff8c:	e7f5      	b.n	1000ff7a <_printf_i+0x226>
 1000ff8e:	bf00      	nop
-1000ff90:	10016b86 	.word	0x10016b86
-1000ff94:	10016b97 	.word	0x10016b97
+1000ff90:	1001ad46 	.word	0x1001ad46
+1000ff94:	1001ad57 	.word	0x1001ad57
 
 1000ff98 <std>:
 1000ff98:	2300      	movs	r3, #0
@@ -36649,10 +36648,10 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10010352:	4798      	blx	r3
 10010354:	3601      	adds	r6, #1
 10010356:	e7f2      	b.n	1001033e <__libc_init_array+0x1e>
-10010358:	10016ec0 	.word	0x10016ec0
-1001035c:	10016ec0 	.word	0x10016ec0
-10010360:	10016ec0 	.word	0x10016ec0
-10010364:	10016ec4 	.word	0x10016ec4
+10010358:	1001b080 	.word	0x1001b080
+1001035c:	1001b080 	.word	0x1001b080
+10010360:	1001b080 	.word	0x1001b080
+10010364:	1001b084 	.word	0x1001b084
 
 10010368 <__retarget_lock_init_recursive>:
 10010368:	4770      	bx	lr
@@ -37072,15 +37071,15 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10010784:	3fc68a28 	.word	0x3fc68a28
 10010788:	509f79fb 	.word	0x509f79fb
 1001078c:	3fd34413 	.word	0x3fd34413
-10010790:	10016bb5 	.word	0x10016bb5
-10010794:	10016bcc 	.word	0x10016bcc
+10010790:	1001ad75 	.word	0x1001ad75
+10010794:	1001ad8c 	.word	0x1001ad8c
 10010798:	7ff00000 	.word	0x7ff00000
-1001079c:	10016bb1 	.word	0x10016bb1
-100107a0:	10016ba8 	.word	0x10016ba8
-100107a4:	10016b85 	.word	0x10016b85
+1001079c:	1001ad71 	.word	0x1001ad71
+100107a0:	1001ad68 	.word	0x1001ad68
+100107a4:	1001ad45 	.word	0x1001ad45
 100107a8:	3ff80000 	.word	0x3ff80000
-100107ac:	10016cb8 	.word	0x10016cb8
-100107b0:	10016c24 	.word	0x10016c24
+100107ac:	1001ae78 	.word	0x1001ae78
+100107b0:	1001ade4 	.word	0x1001ade4
 100107b4:	2301      	movs	r3, #1
 100107b6:	9309      	str	r3, [sp, #36]	; 0x24
 100107b8:	e7d7      	b.n	1001076a <_dtoa_r+0x2c2>
@@ -37380,8 +37379,8 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10010ade:	4689      	mov	r9, r1
 10010ae0:	e7bd      	b.n	10010a5e <_dtoa_r+0x5b6>
 10010ae2:	bf00      	nop
-10010ae4:	10016cb8 	.word	0x10016cb8
-10010ae8:	10016c90 	.word	0x10016c90
+10010ae4:	1001ae78 	.word	0x1001ae78
+10010ae8:	1001ae50 	.word	0x1001ae50
 10010aec:	3ff00000 	.word	0x3ff00000
 10010af0:	40240000 	.word	0x40240000
 10010af4:	401c0000 	.word	0x401c0000
@@ -37977,9 +37976,9 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10011078:	f73f aeb1 	bgt.w	10010dde <_dtoa_r+0x936>
 1001107c:	e7b0      	b.n	10010fe0 <_dtoa_r+0xb38>
 1001107e:	bf00      	nop
-10011080:	10016c24 	.word	0x10016c24
-10011084:	10016b84 	.word	0x10016b84
-10011088:	10016ba8 	.word	0x10016ba8
+10011080:	1001ade4 	.word	0x1001ade4
+10011084:	1001ad44 	.word	0x1001ad44
+10011088:	1001ad68 	.word	0x1001ad68
 
 1001108c <_free_r>:
 1001108c:	b537      	push	{r0, r1, r2, r4, r5, lr}
@@ -38104,8 +38103,8 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10011194:	e9c0 3303 	strd	r3, r3, [r0, #12]
 10011198:	e7f7      	b.n	1001118a <_Balloc+0x66>
 1001119a:	bf00      	nop
-1001119c:	10016bb5 	.word	0x10016bb5
-100111a0:	10016c35 	.word	0x10016c35
+1001119c:	1001ad75 	.word	0x1001ad75
+100111a0:	1001adf5 	.word	0x1001adf5
 
 100111a4 <_Bfree>:
 100111a4:	b570      	push	{r4, r5, r6, lr}
@@ -38133,8 +38132,8 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 100111d8:	6021      	str	r1, [r4, #0]
 100111da:	f843 4022 	str.w	r4, [r3, r2, lsl #2]
 100111de:	bd70      	pop	{r4, r5, r6, pc}
-100111e0:	10016bb5 	.word	0x10016bb5
-100111e4:	10016c35 	.word	0x10016c35
+100111e0:	1001ad75 	.word	0x1001ad75
+100111e4:	1001adf5 	.word	0x1001adf5
 
 100111e8 <__multadd>:
 100111e8:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
@@ -38188,8 +38187,8 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10011264:	6125      	str	r5, [r4, #16]
 10011266:	4620      	mov	r0, r4
 10011268:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
-1001126c:	10016c24 	.word	0x10016c24
-10011270:	10016c35 	.word	0x10016c35
+1001126c:	1001ade4 	.word	0x1001ade4
+10011270:	1001adf5 	.word	0x1001adf5
 
 10011274 <__hi0bits>:
 10011274:	0c03      	lsrs	r3, r0, #16
@@ -38282,8 +38281,8 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 1001132e:	6103      	str	r3, [r0, #16]
 10011330:	bd10      	pop	{r4, pc}
 10011332:	bf00      	nop
-10011334:	10016c24 	.word	0x10016c24
-10011338:	10016c35 	.word	0x10016c35
+10011334:	1001ade4 	.word	0x1001ade4
+10011338:	1001adf5 	.word	0x1001adf5
 
 1001133c <__multiply>:
 1001133c:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -38402,8 +38401,8 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10011482:	e799      	b.n	100113b8 <__multiply+0x7c>
 10011484:	3e01      	subs	r6, #1
 10011486:	e79b      	b.n	100113c0 <__multiply+0x84>
-10011488:	10016c24 	.word	0x10016c24
-1001148c:	10016c35 	.word	0x10016c35
+10011488:	1001ade4 	.word	0x1001ade4
+1001148c:	1001adf5 	.word	0x1001adf5
 
 10011490 <__pow5mult>:
 10011490:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -38471,9 +38470,9 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10011530:	4638      	mov	r0, r7
 10011532:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
 10011536:	bf00      	nop
-10011538:	10016d80 	.word	0x10016d80
-1001153c:	10016bb5 	.word	0x10016bb5
-10011540:	10016c35 	.word	0x10016c35
+10011538:	1001af40 	.word	0x1001af40
+1001153c:	1001ad75 	.word	0x1001ad75
+10011540:	1001adf5 	.word	0x1001adf5
 
 10011544 <__lshift>:
 10011544:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -38552,8 +38551,8 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 1001160e:	d8f9      	bhi.n	10011604 <__lshift+0xc0>
 10011610:	e7ea      	b.n	100115e8 <__lshift+0xa4>
 10011612:	bf00      	nop
-10011614:	10016c24 	.word	0x10016c24
-10011618:	10016c35 	.word	0x10016c35
+10011614:	1001ade4 	.word	0x1001ade4
+10011618:	1001adf5 	.word	0x1001adf5
 
 1001161c <__mcmp>:
 1001161c:	b530      	push	{r4, r5, lr}
@@ -38679,8 +38678,8 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 1001175a:	3f01      	subs	r7, #1
 1001175c:	e7ea      	b.n	10011734 <__mdiff+0xe0>
 1001175e:	bf00      	nop
-10011760:	10016c24 	.word	0x10016c24
-10011764:	10016c35 	.word	0x10016c35
+10011760:	1001ade4 	.word	0x1001ade4
+10011764:	1001adf5 	.word	0x1001adf5
 
 10011768 <__d2b>:
 10011768:	e92d 43f7 	stmdb	sp!, {r0, r1, r2, r4, r5, r6, r7, r8, r9, lr}
@@ -38748,8 +38747,8 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 1001180c:	ebc0 1042 	rsb	r0, r0, r2, lsl #5
 10011810:	e7e2      	b.n	100117d8 <__d2b+0x70>
 10011812:	bf00      	nop
-10011814:	10016c24 	.word	0x10016c24
-10011818:	10016c35 	.word	0x10016c35
+10011814:	1001ade4 	.word	0x1001ade4
+10011818:	1001adf5 	.word	0x1001adf5
 
 1001181c <_malloc_usable_size_r>:
 1001181c:	f851 3c04 	ldr.w	r3, [r1, #-4]
@@ -39036,11 +39035,11 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10011ac0:	4638      	mov	r0, r7
 10011ac2:	f7fe f947 	bl	1000fd54 <_printf_i>
 10011ac6:	e7eb      	b.n	10011aa0 <_svfiprintf_r+0x1c0>
-10011ac8:	10016d8c 	.word	0x10016d8c
-10011acc:	10016d96 	.word	0x10016d96
+10011ac8:	1001af4c 	.word	0x1001af4c
+10011acc:	1001af56 	.word	0x1001af56
 10011ad0:	1000f80d 	.word	0x1000f80d
 10011ad4:	1001182d 	.word	0x1001182d
-10011ad8:	10016d92 	.word	0x10016d92
+10011ad8:	1001af52 	.word	0x1001af52
 
 10011adc <__sfputc_r>:
 10011adc:	6893      	ldr	r3, [r2, #8]
@@ -39308,11 +39307,11 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10011d48:	4630      	mov	r0, r6
 10011d4a:	f7fe f803 	bl	1000fd54 <_printf_i>
 10011d4e:	e7e4      	b.n	10011d1a <_vfiprintf_r+0x1ea>
-10011d50:	10016d8c 	.word	0x10016d8c
-10011d54:	10016d96 	.word	0x10016d96
+10011d50:	1001af4c 	.word	0x1001af4c
+10011d54:	1001af56 	.word	0x1001af56
 10011d58:	1000f80d 	.word	0x1000f80d
 10011d5c:	10011b0b 	.word	0x10011b0b
-10011d60:	10016d92 	.word	0x10016d92
+10011d60:	1001af52 	.word	0x1001af52
 
 10011d64 <__sflush_r>:
 10011d64:	898a      	ldrh	r2, [r1, #12]
@@ -40057,14 +40056,14 @@ ai_bool ai_emotion_model_data_params_get(ai_network_params* params)
 10012444:	42cff1b5 	.word	0x42cff1b5
 10012448:	3eb17218 	.word	0x3eb17218
 1001244c:	3f851591 	.word	0x3f851591
-10012450:	10016eb0 	.word	0x10016eb0
-10012454:	10016eb8 	.word	0x10016eb8
+10012450:	1001b070 	.word	0x1001b070
+10012454:	1001b078 	.word	0x1001b078
 10012458:	3331bb4c 	.word	0x3331bb4c
 1001245c:	b5ddea0e 	.word	0xb5ddea0e
 10012460:	388ab355 	.word	0x388ab355
 10012464:	bb360b61 	.word	0xbb360b61
 10012468:	3e2aaaab 	.word	0x3e2aaaab
-1001246c:	10016ea8 	.word	0x10016ea8
+1001246c:	1001b068 	.word	0x1001b068
 10012470:	3fb8aa3b 	.word	0x3fb8aa3b
 10012474:	3f317180 	.word	0x3f317180
 10012478:	3717f7d1 	.word	0x3717f7d1
@@ -40218,7 +40217,7 @@ Disassembly of section .startup_copro_fw.Reset_Handler:
   ldr   sp, =_estack      /* set stack pointer */
 10012558:	10040000 	.word	0x10040000
   ldr  r3, =_sidata
-1001255c:	10016ec8 	.word	0x10016ec8
+1001255c:	1001b088 	.word	0x1001b088
   ldr  r0, =_sdata
 10012560:	10020000 	.word	0x10020000
   ldr  r3, =_edata

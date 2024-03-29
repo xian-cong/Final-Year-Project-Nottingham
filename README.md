@@ -9,7 +9,7 @@ WellnessAI+ is an intelligent wearable device equipped with electrocardiogram (*
 - [Running Real Time Inference with STM32MP157F-DK2 and ECG](code/EMOTION_AI/CM4/Core/Src/main.c)
 
 ### Demo
-[![Demo Video](https://img.youtube.com/vi/qq1fBSTt8C8/0.jpg)](https://www.youtube.com/watch?v=h7NpJMywoSw)
+[![Demo Video](https://img.youtube.com/vi/h7NpJMywoSw/0.jpg)](https://www.youtube.com/watch?v=h7NpJMywoSw)
 
 ### Features
 - **ECG Monitoring**: The ECG sensor is used to measure the electrical activity of the heart and display the ECG waveform on the screen. The ECG waveform is also sent to the cloud for further analysis.

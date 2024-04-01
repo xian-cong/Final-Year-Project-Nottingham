@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    emotion_model_data.c
   * @author  AST Embedded Analytics Research Platform
-  * @date    Wed Mar 27 01:47:31 2024
+  * @date    Sun Mar 31 17:56:23 2024
   * @brief   AI Tool Automatic Code Generator for Embedded NN computing
   ******************************************************************************
   * @attention
@@ -21,13 +21,13 @@
 AI_API_DECLARE_BEGIN
 ai_buffer g_emotion_model_data_map_activations[AI_EMOTION_MODEL_DATA_ACTIVATIONS_COUNT] = {
   AI_BUFFER_INIT(AI_FLAG_NONE,  AI_BUFFER_FORMAT_U8,
-    AI_BUFFER_SHAPE_INIT(AI_SHAPE_BCWH, 4, 1, 33744, 1, 1),
-    33744, NULL, NULL),    /* heap_overlay_pool */
+    AI_BUFFER_SHAPE_INIT(AI_SHAPE_BCWH, 4, 1, 6128, 1, 1),
+    6128, NULL, NULL),    /* heap_overlay_pool */
   };
 ai_buffer g_emotion_model_data_map_weights[AI_EMOTION_MODEL_DATA_WEIGHTS_COUNT] = {
   AI_BUFFER_INIT(AI_FLAG_NONE,  AI_BUFFER_FORMAT_U8,
-    AI_BUFFER_SHAPE_INIT(AI_SHAPE_BCWH, 4, 1, 33368, 1, 1),
-    33368, NULL, s_emotion_model_weights_array_u64),   /* weights_array */
+    AI_BUFFER_SHAPE_INIT(AI_SHAPE_BCWH, 4, 1, 51864, 1, 1),
+    51864, NULL, s_emotion_model_weights_array_u64),   /* weights_array */
   };
 
 

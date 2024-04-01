@@ -104,7 +104,6 @@ int main(void)
 	int buf_len = 0;
 
 	uint32_t timestamp;
-//	float y_val;
 
   /* USER CODE END 1 */
 
@@ -174,18 +173,15 @@ int main(void)
 	      			  buf_len = sprintf(buf, "%8.6f ", aiOutData[i]);
 	      			  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
 	      		  }
-//	      		  uint32_t class = argmax(aiOutData, AI_EMOTION_MODEL_OUT_1_SIZE);
-//	      		  buf_len = sprintf(buf, "Prediction : %d - %s\r\n Duration : %lu\r\n", (int) class, emotions[class], htim16.Instance->CNT - timestamp);
-//	      		  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
 	      		if (aiOutData[0] != 0.0 || aiOutData[1] != 1.0) {
-	      		                uint32_t class = argmax(aiOutData, AI_EMOTION_MODEL_OUT_1_SIZE);
-	      		                buf_len = sprintf(buf, "Prediction : %d - %s\r\n Duration : %lu\r\n", (int)class, emotions[class], htim16.Instance->CNT - timestamp);
-	      		                HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
-	      		            }
-	      		            else {
-	      		                buf_len = sprintf(buf, "Sensor Detached\r\n");
-	      		                HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
-	      		            }
+	      		      uint32_t class = argmax(aiOutData, AI_EMOTION_MODEL_OUT_1_SIZE);
+	      		      buf_len = sprintf(buf, "Prediction : %d - %s\r\n Duration : %lu\r\n", (int)class, emotions[class], htim16.Instance->CNT - timestamp);
+	      		      HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
+	      		  }
+	      		else {
+	      		      buf_len = sprintf(buf, "Sensor Detached\r\n");
+	      		      HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
+	      		  }
 	      }
 
 	  }

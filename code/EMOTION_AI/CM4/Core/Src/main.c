@@ -102,6 +102,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	char buf[50]; // buffer for serial output string
 	int buf_len = 0;
+	char msg[100];
 
 	uint32_t timestamp;
 
@@ -160,6 +161,8 @@ int main(void)
 	      HAL_ADC_Start(&hadc2);
 	      HAL_ADC_PollForConversion(&hadc2, HAL_MAX_DELAY);
 	      aiInData[i] = HAL_ADC_GetValue(&hadc2);
+	      sprintf(msg, "%f\r\n", aiInData[i]);
+	      HAL_UART_Transmit(&huart4, msg, strlen(msg), HAL_MAX_DELAY);
 	      HAL_Delay(1);
 
 	      if (i == AI_EMOTION_MODEL_IN_1_SIZE) {
@@ -170,12 +173,12 @@ int main(void)
 	      		  AI_Run(aiInData, aiOutData);
 	      		  /* Output results */
 	      		  for (uint32_t i = 0; i < AI_EMOTION_MODEL_OUT_1_SIZE; i++) {
-	      			  buf_len = sprintf(buf, "%8.6f ", aiOutData[i]);
+	      			  buf_len = sprintf(buf, "Model confidence %d: %8.6f\n", i,aiOutData[i]);
 	      			  HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
 	      		  }
 	      		if (aiOutData[0] != 0.0 || aiOutData[1] != 1.0) {
 	      		      uint32_t class = argmax(aiOutData, AI_EMOTION_MODEL_OUT_1_SIZE);
-	      		      buf_len = sprintf(buf, "Prediction : %d - %s\r\n Duration : %lu\r\n", (int)class, emotions[class], htim16.Instance->CNT - timestamp);
+	      		      buf_len = sprintf(buf, "Prediction : %d - %s\r\nDuration : %lu\r\n", (int)class, emotions[class], htim16.Instance->CNT - timestamp);
 	      		      HAL_UART_Transmit(&huart4, (uint8_t *)buf, buf_len, 100);
 	      		  }
 	      		else {

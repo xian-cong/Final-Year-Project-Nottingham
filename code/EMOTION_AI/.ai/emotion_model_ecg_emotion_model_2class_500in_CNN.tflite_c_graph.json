@@ -692,7 +692,7 @@
         }
     ],
     "c_activations_count": 1,
-    "date_time": "Sun Mar 31 17:49:25 2024",
+    "date_time": "Tue Apr  9 22:01:32 2024",
     "model_name": "ecg_emotion_model_2class_500in_cnn",
     "tool_version": {
         "major": 1,

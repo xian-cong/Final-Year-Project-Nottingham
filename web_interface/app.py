@@ -40,11 +40,12 @@ def parse_serial_data(data):
 
         confidence_0 = float(confidence_line_0.split(':')[-1].strip())
         confidence_1 = float(confidence_line_1.split(':')[-1].strip())
-        prediction = int(prediction_line.split(':')[-1].split('-')[0].strip())
-        duration = int(duration_line.split(':')[-1].strip())
+        prediction_info = prediction_line.split(':')[-1].split('-')
+        prediction = int(prediction_info[0].strip()) if prediction_info[0].strip() != "Sensor Detached" else "Sensor Detached"
+        duration = float(duration_line.split(':')[-1].strip())
 
         # Update the prediction widget
-        prediction_text.metric(label="Prediction", value="stress" if prediction == 1 else "non-stress", delta=None)
+        prediction_text.metric(label="Prediction", value="stress" if prediction == 1 else "non-stress" if prediction == 0 else prediction, delta=None)
         confidence_0_text.metric(label="Model Confidence (Non-stress)", value=confidence_0, delta=None)
         confidence_1_text.metric(label="Model Confidence (Stress)", value=confidence_1, delta=None)
         duration_text.metric(label="Duration (ms)", value=duration, delta=None)

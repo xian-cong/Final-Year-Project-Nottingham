@@ -3,8 +3,8 @@
     "c_layers": [
         {
             "next": "gemm_1",
-            "rom": 49024,
-            "op_by_type": {"smul_f32_f32c8": 48000},
+            "rom": 24064,
+            "op_by_type": {"smul_f32_f32c4": 48000},
             "c_forward": "forward_dense",
             "c_code_emit": true,
             "macc": 48000,
@@ -17,9 +17,9 @@
                 "weights": ["gemm_0_weights"]
             },
             "weight_sparsity": [
-                2.0833333333358794E-5,
+                3.333333333332966E-4,
                 48000,
-                1
+                16
             ],
             "layer_type": "dense",
             "m_id": 0
@@ -228,7 +228,7 @@
             "allocate-inputs",
             "allocate-outputs"
         ],
-        "compression": "low"
+        "compression": "medium"
     },
     "inputs": ["serving_default_dense_input0_output"],
     "macc": 48814,
@@ -583,9 +583,9 @@
         },
         {
             "mem_pool": "weights",
-            "offset": 1240,
+            "offset": 280,
             "is_const": true,
-            "format": "c8 (LUT8)",
+            "format": "c4 (LUT4)",
             "n_items": 48000,
             "tensors": [{
                 "shape": [
@@ -594,20 +594,20 @@
                 ],
                 "name": "gemm_0_weights"
             }],
-            "zeros": 1,
-            "raw_fmt": "(LUT_FLOAT, 8 bit, C Size: 8 bits)",
+            "zeros": 16,
+            "raw_fmt": "(LUT_FLOAT, 4 bit, C Size: 4 bits)",
             "c_mem_pool": "weights",
             "padded": true,
             "size": 48000,
             "c_type": "const float",
             "name": "gemm_0_weights_array",
             "c_id": 15,
-            "c_bits": 8,
-            "c_size_in_byte": 49024
+            "c_bits": 4,
+            "c_size_in_byte": 24064
         },
         {
             "mem_pool": "weights",
-            "offset": 49240,
+            "offset": 24280,
             "is_const": true,
             "format": "float32",
             "n_items": 512,
@@ -631,7 +631,7 @@
         },
         {
             "mem_pool": "weights",
-            "offset": 51288,
+            "offset": 26328,
             "is_const": true,
             "format": "float32",
             "n_items": 16,
@@ -652,7 +652,7 @@
         },
         {
             "mem_pool": "weights",
-            "offset": 51352,
+            "offset": 26392,
             "is_const": true,
             "format": "float32",
             "n_items": 128,
@@ -676,7 +676,7 @@
         }
     ],
     "c_activations_count": 1,
-    "date_time": "Sun Mar 31 17:56:23 2024",
+    "date_time": "Mon Apr 22 15:08:40 2024",
     "model_name": "ecg_emotion_model_2class_1500in",
     "tool_version": {
         "major": 1,
@@ -693,9 +693,9 @@
     "model_fmt": "float",
     "c_weights_count": 1,
     "weights": {"weights_array": {
-        "buffer_data_size": 51864,
+        "buffer_data_size": 26904,
         "buffer_crc": 0,
-        "pool_size": 51864,
+        "pool_size": 26904,
         "buffer_c_type": "u64",
         "buffer_c_name": "s_emotion_model_weights_array_u64",
         "buffer_offsets": [
@@ -736,35 +736,35 @@
             },
             {
                 "lite_tag": null,
-                "offset": 1240,
-                "size": 49024,
+                "offset": 280,
+                "size": 24064,
                 "start_offset": 216,
                 "buffer_name": "gemm_0_weights_array"
             },
             {
                 "lite_tag": null,
-                "offset": 49240,
+                "offset": 24280,
                 "size": 2048,
-                "start_offset": 49240,
+                "start_offset": 24280,
                 "buffer_name": "gemm_1_weights_array"
             },
             {
                 "lite_tag": null,
-                "offset": 51288,
+                "offset": 26328,
                 "size": 64,
-                "start_offset": 51288,
+                "start_offset": 26328,
                 "buffer_name": "gemm_1_bias_array"
             },
             {
                 "lite_tag": null,
-                "offset": 51352,
+                "offset": 26392,
                 "size": 512,
-                "start_offset": 51352,
+                "start_offset": 26392,
                 "buffer_name": "gemm_3_weights_array"
             }
         ],
         "buffer_c_name_addr": "s_emotion_model_weights_array_u64",
-        "buffer_c_count": 6483,
+        "buffer_c_count": 3363,
         "pool_id": 0,
         "buffer_c_data": []
     }},
@@ -777,7 +777,7 @@
         ],
         "series": "generic",
         "activations": 6128,
-        "weights": 51864
+        "weights": 26904
     },
     "version": "1.2",
     "tool_api_version": {

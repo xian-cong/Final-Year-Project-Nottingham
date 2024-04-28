@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    emotion_model_data_params.h
   * @author  AST Embedded Analytics Research Platform
-  * @date    Mon Apr 22 15:08:40 2024
+  * @date    Mon Apr 29 00:18:13 2024
   * @brief   AI Tool Automatic Code Generator for Embedded NN computing
   ******************************************************************************
   * Copyright (c) 2024 STMicroelectronics.
@@ -29,18 +29,18 @@
 
 
 #define AI_EMOTION_MODEL_DATA_ACTIVATIONS_SIZES \
-  { 6128, }
-#define AI_EMOTION_MODEL_DATA_ACTIVATIONS_SIZE     (6128)
+  { 33744, }
+#define AI_EMOTION_MODEL_DATA_ACTIVATIONS_SIZE     (33744)
 #define AI_EMOTION_MODEL_DATA_ACTIVATIONS_COUNT    (1)
-#define AI_EMOTION_MODEL_DATA_ACTIVATION_1_SIZE    (6128)
+#define AI_EMOTION_MODEL_DATA_ACTIVATION_1_SIZE    (33744)
 
 
 
 #define AI_EMOTION_MODEL_DATA_WEIGHTS_SIZES \
-  { 26904, }
-#define AI_EMOTION_MODEL_DATA_WEIGHTS_SIZE         (26904)
+  { 16536, }
+#define AI_EMOTION_MODEL_DATA_WEIGHTS_SIZE         (16536)
 #define AI_EMOTION_MODEL_DATA_WEIGHTS_COUNT        (1)
-#define AI_EMOTION_MODEL_DATA_WEIGHT_1_SIZE        (26904)
+#define AI_EMOTION_MODEL_DATA_WEIGHT_1_SIZE        (16536)
 
 
 

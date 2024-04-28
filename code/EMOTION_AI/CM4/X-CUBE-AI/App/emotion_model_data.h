@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    emotion_model_data.h
   * @author  AST Embedded Analytics Research Platform
-  * @date    Mon Apr 22 15:08:40 2024
+  * @date    Mon Apr 29 00:18:13 2024
   * @brief   AI Tool Automatic Code Generator for Embedded NN computing
   ******************************************************************************
   * Copyright (c) 2024 STMicroelectronics.
@@ -33,7 +33,7 @@ AI_DEPRECATED
 AI_API_DECLARE_BEGIN
 
 
-extern const ai_u64 s_emotion_model_weights_array_u64[3363];
+extern const ai_u64 s_emotion_model_weights_array_u64[2067];
 
 
 

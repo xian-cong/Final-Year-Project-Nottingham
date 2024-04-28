@@ -1,7 +1,7 @@
 {
     "_allocate_inputs": 4,
     "_allocate_outputs": 4,
-    "cli_parameters": "generate --name emotion_model -m D:/Nottingham/FYP/Final-Year-Project-Nottingham/model/ecg_emotion_model_2class_500in_CNN.tflite --type tflite --compression low --verbosity 1 --workspace C:\\Users\\user\\AppData\\Local\\Temp\\mxAI_workspace19293221908220017303830296134230071 --output C:\\Users\\user\\.stm32cubemx\\emotion_model_output --allocate-inputs --series stm32mp1 --allocate-outputs",
+    "cli_parameters": "generate --name emotion_model -m D:/Nottingham/FYP/Final-Year-Project-Nottingham/model/ecg_emotion_model_2class_500in_CNN.tflite --type tflite --compression medium --verbosity 1 --workspace C:\\Users\\user\\AppData\\Local\\Temp\\mxAI_workspace120689447543760013129557759647062893 --output C:\\Users\\user\\.stm32cubemx\\emotion_model_output --allocate-inputs --series stm32mp1 --allocate-outputs",
     "cli_version": {
         "major": 1,
         "micro": 0,
@@ -10,12 +10,12 @@
     "cli_version_str": "1.7.0",
     "code_size": 0,
     "compression": {
-        "factor": 3.9443482562453624,
+        "factor": 7.745021855269548,
         "layers": {
-            "gemm_6_weights": 4.0
+            "gemm_6_weights": 8.0
         }
     },
-    "date_time": "Tue Apr  9 22:01:32 2024",
+    "date_time": "Mon Apr 29 00:18:13 2024",
     "error": 0,
     "error_str": [],
     "exec_cmd": "generate",
@@ -211,7 +211,7 @@
                 "n_macc": 0,
                 "n_params": 31744,
                 "psize": 31744,
-                "rom_size": 32800
+                "rom_size": 15968
             },
             "id": 6,
             "inputs": [],
@@ -499,7 +499,7 @@
             "name": "nl_11"
         }
     ],
-    "rom_size": 33368,
+    "rom_size": 16536,
     "strategy": "heap_overlay",
     "tools_api_version": {
         "major": 1,

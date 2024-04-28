@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    emotion_model.h
   * @author  AST Embedded Analytics Research Platform
-  * @date    Mon Apr 22 15:08:40 2024
+  * @date    Mon Apr 29 00:18:13 2024
   * @brief   AI Tool Automatic Code Generator for Embedded NN computing
   ******************************************************************************
   * @attention
@@ -25,7 +25,7 @@
 
 /******************************************************************************/
 #define AI_EMOTION_MODEL_MODEL_NAME          "emotion_model"
-#define AI_EMOTION_MODEL_ORIGIN_MODEL_NAME   "ecg_emotion_model_2class_1500in"
+#define AI_EMOTION_MODEL_ORIGIN_MODEL_NAME   "ecg_emotion_model_2class_500in_cnn"
 
 /******************************************************************************/
 #define AI_EMOTION_MODEL_ACTIVATIONS_ALIGNMENT   (4)
@@ -46,9 +46,10 @@ AI_DEPRECATED
   AI_EMOTION_MODEL_IN_1_SIZE_BYTES, \
 }
 #define AI_EMOTION_MODEL_IN_1_FORMAT      AI_BUFFER_FORMAT_FLOAT
-#define AI_EMOTION_MODEL_IN_1_CHANNEL     (1500)
-#define AI_EMOTION_MODEL_IN_1_SIZE        (1500)
-#define AI_EMOTION_MODEL_IN_1_SIZE_BYTES  (6000)
+#define AI_EMOTION_MODEL_IN_1_HEIGHT      (500)
+#define AI_EMOTION_MODEL_IN_1_CHANNEL     (1)
+#define AI_EMOTION_MODEL_IN_1_SIZE        (500 * 1)
+#define AI_EMOTION_MODEL_IN_1_SIZE_BYTES  (2000)
 
 /******************************************************************************/
 #define AI_EMOTION_MODEL_OUT_NUM       (1)

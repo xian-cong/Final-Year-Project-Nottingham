@@ -70,3 +70,6 @@ python3 main.py
 
 ### Project Specification
 [Project Report](links%20and%20documents/FYP%20Project%20Specification.pdf)
+
+### Project Thesis
+[Project Report](links%20and%20documents/thesis/20418760%20-%20Koay%20Xian%20Cong%20-%20BEng%20FYP%20Final%20Thesis.pdf)

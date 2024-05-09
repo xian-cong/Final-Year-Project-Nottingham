@@ -92,7 +92,7 @@ tensorboard==2.15.1
 tensorboard-data-server==0.7.2
 tensorflow-addons==0.22.0
 tensorflow-estimator==2.15.0
-tensorflow-intel==2.15.0
+tensorflow-intel
 tensorflow-io-gcs-filesystem==0.31.0
 tensorflow-probability==0.23.0
 termcolor==2.4.0

@@ -2,6 +2,7 @@ import serial
 import streamlit as st
 import plotly.graph_objects as go
 
+st.title('Real-Time ECG Emotion Classification')
 st.sidebar.title('Settings')
 
 # User input for baud rate and serial port in the sidebar
@@ -10,8 +11,6 @@ serial_port = st.sidebar.selectbox('Select Serial Port', options=['COM5', 'COM1'
 
 # Open the serial port
 ser = serial.Serial(serial_port, baud_rate)
-
-st.title('Real-Time ECG Emotion Classification')
 
 main_container = st.container()
 
